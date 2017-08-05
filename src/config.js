@@ -1,5 +1,5 @@
 module.exports = {
-  host: '127.0.0.1',
+  host: 'crewww-c780d.firebaseapp.com',
   apiPort: 3001,
   serverPort: 3000,
   clientPort: 3002
