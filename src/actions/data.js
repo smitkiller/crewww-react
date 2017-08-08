@@ -10,11 +10,7 @@ import {
 export const loadDatas = () => ({
   [CALL_API]: {
     endpoint: DATAS_ENDPOINT,
-    headers: {
-      'Access-Control-Allow-Origin': 'https://crewww-c780d.firebaseapp.com'
-    },
     method: 'GET',
-    mode: 'no-cors',
     types: [LOAD_DATAS_REQUEST, LOAD_DATAS_SUCCESS, LOAD_DATAS_FAILURE]
   }
 })

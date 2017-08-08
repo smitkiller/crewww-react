@@ -26,11 +26,6 @@ import {
 
 export const loadPages = () => ({
   [CALL_API]: {
-    headers: {
-      'Access-Control-Allow-Origin': 'https://crewww-c780d.firebaseapp.com',
-      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT'
-    },
-
     endpoint: PAGES_ENDPOINT,
     method: 'GET',
     types: [LOAD_PAGES_REQUEST, LOAD_PAGES_SUCCESS, LOAD_PAGES_FAILURE]
