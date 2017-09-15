@@ -1,7 +1,7 @@
-import React,{Component} from 'react';
-import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom'
+import React,{Component,PropTypes} from 'react';
 import { syncHistoryWithStore } from 'react-router-redux'
 
+import { Router, Route,IndexRoute } from 'react-router'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -15,69 +15,67 @@ import NewPage from '../containers/Pages/New'
 import ShowPage from '../containers/Pages/Show'
 import EditPage from '../containers/Pages/Edit'
 import Login from '../containers/Login'
+import { firebaseAuth } from '../constants/configAuth'
 
-function PrivateRoute ({component: Component, authed, ...rest}) {
-  return (
-    <Route
-      {...rest}
-      render={(props) => authed === true
-        ? <Component {...props} />
-        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}/>
-  )
-}
 
-function PublicRoute ({component: Component, authed, ...rest}) {
-  return (
-    <Route
-      {...rest}
-      render={(props) => authed === false
-        ? <Component {...props} />
-        : <Redirect to='/home' />}/>
-  )
-}
+function  requireAuth(authed,nextState,replace) {
+  //alert(authed)
+        if (authed===false) {
+          replace({
+            pathname: '/login',
+            state: { nextPathname: nextState.location.pathname }
+          })
+        }
+ }
 
-export default class Routes extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      open:false
-    }
+
+
+class Routes extends Component {
+ state = {
+    authed: false
   }
-  handleToggle = () =>this.setState({
-    open:!this.state.open
-  })
+
+   removeListener = () => {
+      this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          authed: true
+        })
+      } else {
+        this.setState({
+          authed: false
+        })
+      }
+    })
+  }
+
+    componentDidmount () {
+    this.removeListener()
+  }
+ 
   render() {
+  const {history,store} = this.props
     return (
-      <BrowserRouter>
-        <div>
-        <AppBar
-        title="Crewww-react"
-        onLeftIconButtonTouchTap={this.handleToggle}
-        iconElementRight = {<img src={logo} />}/>
-        {/*iconElementRight =*/} {/*<img src='header-logo.png' alt="Logo" />*/}
-        <div>
-        <Drawer
-        width={200}
-        openSecondary={false}
-        open={this.state.open}>
-        <AppBar title="test" onLeftIconButtonTouchTap={this.handleToggle}/>
-        <Link style={{textDecoration:'none'}} to={'/home'}><MenuItem>Home</MenuItem></Link>
-        <Link style={{textDecoration:'none'}} to={'/app'}><MenuItem>App</MenuItem></Link>
-        <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>Pages</MenuItem></Link>
-        <Link style={{textDecoration:'none'}} to={'/login'}><MenuItem>Login</MenuItem></Link>
-        {/*<Link style={{textDecoration:'none'}} to={'/about'}><MenuItem>About</MenuItem></Link>*/}
-        </Drawer>
-        </div>
-          <div className="container">
-            <div className="row">
-              <Switch>
-                <Route path="/" exact component={Home} />
-                <PrivateRoute authed={true} path="/app" component={App} />
-              </Switch>
-            </div>
-          </div>
-        </div>
-      </BrowserRouter>
+   <Router history={syncHistoryWithStore(history, store)}>
+    <Route path="/" component={Home} />
+    <Route path="app" component={App} onEnter={(nextState,replace)=>{requireAuth(this.state.authed,nextState,replace)}} />
+    <Route path="about" component={About}/>
+    <Route path="home" component={Home}/>
+    <Route path="login" component={Login}  />
+    <Route path='pages'>
+      <IndexRoute component={Pages} />
+      <Route path='new'
+             component={NewPage} />
+      <Route path=':id'
+             component={ShowPage} />
+     <Route path='edit'>
+            <Route path=':id' component={EditPage} />
+      </Route>
+    </Route>
+
+  </Router>
     )
   }
 }
+
+export default Routes;
