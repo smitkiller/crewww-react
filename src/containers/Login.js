@@ -3,11 +3,13 @@ import { loginUser } from '../actions/login'
 import Login from '../components/Login'
 import Header from '../components/Header'
 import { reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+
 
 const FIELDS = ['email', 'password']
 
 class LoginContainer extends Component{
-
+  
   render () {
     const { fields, handleSubmit } = this.props
 
@@ -15,13 +17,14 @@ class LoginContainer extends Component{
       <div>
       <Header/>
        <Login
+       login={this.props.login}
        fields={fields}
        handleSubmit={handleSubmit}/>
        </div>
     );
   }
 }
-export default reduxForm({
+LoginContainer = reduxForm({
     form: 'login',
     fields: FIELDS,
     validate: (values, props) =>
@@ -30,3 +33,8 @@ export default reduxForm({
     onSubmit:(values,dispatch)=> dispatch(loginUser(values))
 }
 )(LoginContainer)
+LoginContainer = connect(
+  (state) => ({ login: state.login })
+)(LoginContainer)
+
+export default LoginContainer;
