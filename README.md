@@ -3,4 +3,5 @@ react js api
 npm install
 npm start
 
-##firebase
+##firebase database
+react + redux 
