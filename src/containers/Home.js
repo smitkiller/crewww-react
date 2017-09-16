@@ -28,7 +28,7 @@ class HomesContainer extends Component {
   render() {
     return (
       <div>
-      <Header header='Home'/>
+     <Header header='Home'/>
       <Homes datas={this.props.datas}/>
       </div>
     )
