@@ -1,23 +1,41 @@
-import { checkHttpStatus, parseJSON } from '../utils'
 import { CALL_API } from 'redux-api-middleware'
 import { push } from 'react-router-redux'
-import { LOGIN_ENDPOINT } from '../constants/endpoints'
-import { pushState } from 'redux-router';
-import jwtDecode from 'jwt-decode';
+import { login, resetPassword } from '../Auth/auth'
+import { browserHistory } from 'react-router'
+import { pushState } from 'redux-router'
 import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAILURE,
-  LOGOUT_USER,
-  RECEIVE_PROTECTED_DATA,
-  FETCH_PROTECTED_DATA_REQUEST
+  LOGIN_USER_FAILURE
 } from '../constants/actionTypes'
 
-
-export const loginUser = (values) => ({
-  [CALL_API]: {
-    endpoint: `${LOGIN_ENDPOINT}/?email=${values.email}&password=${values.password}`,
-    method: 'GET',
-    types: [LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE]
+export function loginUser(values){
+  return dispatch=>{
+    dispatch(loginRequest());
+    login(values.email,values.password)
+    .then(()=>{
+      dispatch(loginSuccess(values.email));
+      //dispatch(pushState(null, '/app'));
+    })
+      .catch((error)=>{
+        dispatch(loginFailure());
+      })
   }
-})
+}
+
+function loginFailure(){
+  return{
+    type:LOGIN_USER_FAILURE
+  }
+}
+function loginSuccess(name){
+  return{
+    type:LOGIN_USER_SUCCESS,
+    name
+  }
+}
+function loginRequest(){
+  return{
+    type:LOGIN_USER_REQUEST
+  }
+}
