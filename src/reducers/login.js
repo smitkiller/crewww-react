@@ -1,6 +1,5 @@
 import {createReducer} from '../utils'
 import {pushState} from 'redux-router'
-import jwtDecode from 'jwt-decode'
 import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
