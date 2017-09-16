@@ -4,10 +4,11 @@ import Header from './Header'
 class App extends Component {
   render() {
     return (
+
       <div className="App">
-      <Header header='App'/>
+      <Header/>
         <p className="App-intro">
-          
+          xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </p>
       </div>
     );

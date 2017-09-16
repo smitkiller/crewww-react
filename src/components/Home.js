@@ -15,6 +15,7 @@ const Homes = ({
   datas
 }) => (
 <div style={{margin:20}}>
+oo
         <Card style={style}>
           <CardHeader
             title="URL Avatar"
@@ -27,13 +28,13 @@ const Homes = ({
             <img src={themeSite} alt="" />
           </CardMedia>
           <CardTitle title="Card title" subtitle="Card subtitle" />
-          {
+          {/*
             datas.map((data) => (
           <CardText key={data.id} style={style}>
           {data.title}
           </CardText>
         )
-        )}
+        )*/}
         </Card>
 </div>
 )
