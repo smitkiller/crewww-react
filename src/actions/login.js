@@ -1,8 +1,8 @@
 import { CALL_API } from 'redux-api-middleware'
-import { push } from 'react-router-redux'
+//import { push } from 'react-router-redux'
 import { login, resetPassword } from '../Auth/auth'
-import { browserHistory } from 'react-router'
-import { pushState } from 'redux-router'
+//import { browserHistory } from 'react-router'
+//import { pushState } from 'redux-router'
 import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,

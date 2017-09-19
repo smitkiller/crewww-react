@@ -12,6 +12,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch(action.type) {
+    case "persist/REHYDRATE":{
+      return{...state, ...action.payload}
+    } 
     case LOGIN_USER_SUCCESS:
       return Object.assign({}, state, {
           'isAuthenticated': true,
@@ -26,6 +29,7 @@ export default (state = initialState, action) => {
           'userName': null,
           'statusText': 'Invalid username/password.'
       });
+
     default:
       return state
   }
