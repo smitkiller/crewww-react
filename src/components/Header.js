@@ -7,6 +7,9 @@ import { Link} from 'react-router'
 import logo from './img/logo2.png'
 import {logout} from '../Auth/auth'
 import { firebaseAuth } from '../constants/configAuth'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+
+injectTapEventPlugin();
 
 class Header extends Component {
   constructor(props){

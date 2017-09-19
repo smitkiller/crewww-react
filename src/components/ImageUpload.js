@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import fs from 'fs'
 import { createPage } from '../actions/page'
 
 class ImageUpload extends Component {
@@ -57,4 +56,4 @@ class ImageUpload extends Component {
   }
 }
 
-export default ImageUpload
+export default ImageUpload;

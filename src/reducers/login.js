@@ -1,10 +1,6 @@
-import {pushState} from 'redux-router'
-import { browserHistory } from 'react-router'
 import {
-  LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAILURE,
-  LOGOUT_USER
+  LOGIN_USER_FAILURE
 } from '../constants/actionTypes'
 
 const initialState = {

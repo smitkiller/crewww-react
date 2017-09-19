@@ -17,8 +17,9 @@ export default (history, initialState) => {
     applyMiddleware(...middlewares)
   )
 
+
   if (module.hot) {
-    module.hot.accept('../reducers', () => {
+      module.hot.accept('../reducers', () => {
       System.import('../reducers').then(nextRootReducer =>
         store.replaceReducer(nextRootReducer.default)
       )

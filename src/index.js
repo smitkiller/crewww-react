@@ -9,11 +9,11 @@ const initialState = window.__INITIAL_STATE__
 const rootEl = document.getElementById('root')
 
 render(
-  <AppContainer>
+ 
     <Root
       history={browserHistory}
       initialState={initialState} />
-  </AppContainer>,
+,
   rootEl
 )
 
@@ -22,11 +22,11 @@ if (module.hot) {
     const NextRootApp = require('./containers/Root').default
 
     render(
-      <AppContainer>
+     
          <NextRootApp
            history={browserHistory}
            initialState={initialState} />
-      </AppContainer>,
+     ,
       rootEl
     )
   })

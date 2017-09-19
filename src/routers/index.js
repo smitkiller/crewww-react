@@ -56,7 +56,7 @@ class Routes extends Component {
   render() {
   const {history,store} = this.props
     return (
-   <Router history={syncHistoryWithStore(history, store)}>
+   <Router history={(history)}>
     <Route path="/" component={Home} />
     <Route path="app" component={App} onEnter={(nextState,replace)=>{requireAuth(this.state.authed,nextState,replace)}} />
     <Route path="about" component={About}/>

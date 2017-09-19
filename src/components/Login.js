@@ -1,6 +1,6 @@
 import React, { PropTypes,Component } from 'react'
 import { FlatButton, TextField } from 'material-ui'
-import { Field,reduxForm } from 'redux-form'
+import { Field } from 'redux-form'
 
 const styleLogin = {
   'margin': '2% 40%'
@@ -10,7 +10,7 @@ const styleLogin = {
 class Login extends Component{
 
   render(){
-    const {fields,login,handleSubmit,touched,error}=this.props
+    const {fields,login,handleSubmit}=this.props
     const {email,password} = fields
     return(
         <div style={styleLogin}>{login.statusText}

@@ -15,7 +15,6 @@ const Homes = ({
   datas
 }) => (
 <div style={{margin:20}}>
-oo
         <Card style={style}>
           <CardHeader
             title="URL Avatar"

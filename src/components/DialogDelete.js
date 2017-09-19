@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import {Dialog,FlatButton,RaisedButton} from 'material-ui'
+import {Dialog,FlatButton} from 'material-ui'
 import DeleteIcon from 'material-ui/svg-icons/action/delete-forever'
 
 class DialogDelete extends Component{

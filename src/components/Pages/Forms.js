@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
 import { Field } from 'redux-form'
 import Header from '../Header'
-import { FileUpload } from 'redux-file-upload'
+//import { FileUpload } from 'redux-file-upload'
 import { FlatButton, TextField } from 'material-ui'
-import ImageUpload from '../ImageUpload'
+//import ImageUpload from '../ImageUpload'
 
 const renderTextField = props => (
   <TextField hintText={props.label}
@@ -15,8 +15,6 @@ const PageForm = ({
   fields,
   handleSubmit,touched,error
 }) => {
-  const { title, content } = fields
-
 
   return (
     <div className="App">
@@ -39,7 +37,6 @@ const PageForm = ({
       </div>
       <FlatButton type='submit' label="Submit" />
     </form>
-<ImageUpload/>
     </div>
   )
 }

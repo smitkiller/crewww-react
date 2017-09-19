@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,FlatButton} from 'material-ui'
+import {Table, TableHeader, TableRow, TableRowColumn,FlatButton} from 'material-ui'
 
 export default class Page extends Component {
   static propTypes = {
