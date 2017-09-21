@@ -1,21 +1,22 @@
 import React,{Component,PropTypes} from 'react';
-import { syncHistoryWithStore } from 'react-router-redux'
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import { Router, Route,IndexRoute } from 'react-router'
-import AppBar from 'material-ui/AppBar'
-import Drawer from 'material-ui/Drawer'
-import RaisedButton from 'material-ui/RaisedButton'
-import MenuItem from 'material-ui/MenuItem'
-import logo from '../components/img/logo2.png'
-import App from '../components/App'
-import Home from '../containers/Home'
-import About from '../components/About'
-import Pages from '../containers/Pages/index'
-import NewPage from '../containers/Pages/New'
-import ShowPage from '../containers/Pages/Show'
-import EditPage from '../containers/Pages/Edit'
-import Login from '../containers/Login'
-import { firebaseAuth } from '../constants/configAuth'
+import { Router, Route,IndexRoute } from 'react-router';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import RaisedButton from 'material-ui/RaisedButton';
+import MenuItem from 'material-ui/MenuItem';
+import logo from '../components/img/logo2.png';
+import App from '../components/App';
+import Home from '../containers/Home';
+import About from '../components/About';
+import Pages from '../containers/Pages/index';
+import NewPage from '../containers/Pages/New';
+import ShowPage from '../containers/Pages/Show';
+import EditPage from '../containers/Pages/Edit';
+import Login from '../containers/Login';
+import Reserve from '../containers/Reserve';
+import { firebaseAuth } from '../constants/configAuth';
 
 
 function  requireAuth(authed,nextState,replace) {
@@ -56,24 +57,27 @@ class Routes extends Component {
   render() {
   const {history,store} = this.props
     return (
-   <Router history={(history)}>
-    <Route path="/" component={Home} />
-    <Route path="app" component={App} onEnter={(nextState,replace)=>{requireAuth(this.state.authed,nextState,replace)}} />
-    <Route path="about" component={About}/>
-    <Route path="home" component={Home}/>
-    <Route path="login" component={Login}  />
-    <Route path='pages'>
-      <IndexRoute component={Pages} />
-      <Route path='new'
-             component={NewPage} />
-      <Route path=':id'
-             component={ShowPage} />
-     <Route path='edit'>
-            <Route path=':id' component={EditPage} />
+  <div>
+     <Router history={(history)}>
+      <Route path="/" component={Home} />
+      <Route path="app" component={App} onEnter={(nextState,replace)=>{requireAuth(this.state.authed,nextState,replace)}} />
+      <Route path="about" component={About}/>
+      <Route path="reserve" component={Reserve}/>
+      <Route path="home" component={Home}/>
+      <Route path="login" component={Login}  />
+      <Route path='pages'>
+        <IndexRoute component={Pages} />
+        <Route path='new'
+               component={NewPage} />
+        <Route path=':id'
+               component={ShowPage} />
+       <Route path='edit'>
+              <Route path=':id' component={EditPage} />
+        </Route>
       </Route>
-    </Route>
 
-  </Router>
+      </Router>
+  </div>
     )
   }
 }

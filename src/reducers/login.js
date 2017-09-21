@@ -1,35 +1,37 @@
 import {
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAILURE
+  LOGIN_USER_FAILURE,
+  LOGOUT_USER
 } from '../constants/actionTypes'
 
 const initialState = {
-  token: null,
   userName: null,
-  isAuthenticated: false,
+  authed: false,
   statusText: null
 }
 
 export default (state = initialState, action) => {
   switch(action.type) {
     case "persist/REHYDRATE":{
-      return{...state, ...action.payload}
+      return {...state, ...action.payload}
     } 
     case LOGIN_USER_SUCCESS:
       return Object.assign({}, state, {
-          'isAuthenticated': true,
+          'authed': true,
           'userName':action.name,
-          'token': true,
           'statusText': 'You have been successfully logged in.'
       });
     case LOGIN_USER_FAILURE:
       return Object.assign({}, state, {
-          'isAuthenticated': false,
-          'token': null,
+          'authed': false,
           'userName': null,
           'statusText': 'Invalid username/password.'
       });
-
+     case LOGOUT_USER:
+         return Object.assign({}, state, {
+          'authed': false,
+          'userName': null
+      });
     default:
       return state
   }

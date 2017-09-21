@@ -3,7 +3,8 @@ import { FlatButton, TextField } from 'material-ui'
 import { Field } from 'redux-form'
 
 const styleLogin = {
-  'margin': '2% 40%'
+  'margin': '2% 40%',
+  color:'red'
 }
 
 
