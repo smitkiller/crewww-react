@@ -9,6 +9,7 @@ import {logoutUser} from '../actions/login';
 import { firebaseAuth } from '../constants/configAuth';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { connect } from 'react-redux';
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 injectTapEventPlugin();
 
 class Header extends Component {
@@ -42,9 +43,18 @@ class Header extends Component {
           <Link style={{textDecoration:'none'}} to={'/app'} ><MenuItem>App</MenuItem></Link>
           <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>Pages</MenuItem></Link>
           <Link style={{textDecoration:'none'}} to={'/reserve'}><MenuItem>จอง</MenuItem></Link>
-          <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>แจ้ง</MenuItem></Link>
+          <MenuItem
+              primaryText="แจ้ง"
+              rightIcon={<ArrowDropRight />}
+              menuItems={[
+                <Link style={{textDecoration:'none'}} to={'/login'}><MenuItem primaryText="แจ้งออกห้องพัก" /></Link>,
+                <MenuItem primaryText="แจ้งย้ายห้องพัก" />,
+                <MenuItem primaryText="เแจ้งอุปกร์เสียหาย"  />
+              ]}
+          />
           <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>คำนวณ</MenuItem></Link>
           <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>ติดต่อ</MenuItem></Link>
+      
           {this.props.login.authed
                     ? <button
                         style={{border: 'none', background: 'transparent'}}

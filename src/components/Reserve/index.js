@@ -1,16 +1,19 @@
 import React,{Component,PropTypes} from'react';
 import Paper from 'material-ui/Paper';
 import {GridList, GridTile} from 'material-ui/GridList';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 
 const style = {
-  height: 30,
-  width: 30,
-  margin: 5,
+  height: 100,
+  width: 100,//!important
   textAlign: 'center',
   display: 'inline-block',
+  'margin-left': 5,
+ // 'vertical-align': 'middle',
+  
   backgroundColor: '#FF9800'
 };
-  
+
 const styleTriangles = {
 	width: 'auto',
 	height: 0,
@@ -31,7 +34,7 @@ const styleTrianglesHead = {
 	'margin-top': '-96px'
 }
 const styleScrope = {
-	margin:-10
+	margin:-10,
 };
 
 const styleContent ={
@@ -39,32 +42,69 @@ const styleContent ={
 	'margin-right': '50px',
 	'margin-top': '50px'
 }
+/*
+const getObjects = () => {
+  const objs = []
+  for (var i=0; i < objects.length; i++) {
+    objs.push(<ObjectRow obj={objects[i]} key={i}>)
+  }
+
+  return objs;
+}
+
+###########################################
+
+var lis = [];
+
+for (var i=0; i<10; i++) {
+    lis.push(<li><a href="#">{i + 1}</a></li>);
+}
+
+var Pagination = React.createClass({
+    render: function(){
+        return(
+            <div class="text-center">
+                <ul class="pagination">
+
+                    <li><a href="#">«</a></li>
+                    {lis}
+                    <li><a href="#">»</a></li>
+                </ul>
+            </div>
+        );
+    }
+});
+
+*/
+
+var lis = [];
+var rows=5;
+var col=5;
+var Foo = React.createElement("div", { style:{style}});
+
+	for(var i=0;i<rows;i++){
+		lis.push(Foo);
+		for (var j=0; j<col; j++) {
+				lis.push( <Paper style={style} zDepth={1} />);
+		}
+
+	}
+
+/*const listItem = lis.map((lis)=>
+		<div>{lis}</div>
+	);*/
 
 class Reserve extends Component{
 	render(){
-
 		return(
+
 			<div style={styleContent}> 
-			<p style={styleTriangles}></p><p style={styleTrianglesHead}></p>
-			<Paper style={styleScrope}>	
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			<Paper style={style} zDepth={1} />
-			</Paper>
-			</div>									
+				<p style={styleTriangles}></p><p style={styleTrianglesHead}></p>
+				<Paper style={styleScrope}>
+			   		{lis}
+			   	</Paper>
+			</div>                        
+											
 			)
 	}
 }
