@@ -7,10 +7,12 @@ import { Link} from 'react-router';
 import logo from './img/logo2.png';
 import {logoutUser} from '../actions/login';
 import { firebaseAuth } from '../constants/configAuth';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import { connect } from 'react-redux';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
-injectTapEventPlugin();
+
+
+
+
 
 class Header extends Component {
   constructor(props){
@@ -23,6 +25,7 @@ class Header extends Component {
   handleToggle = () =>this.setState({
     open:!this.state.open
   })
+
   render() {
     const { header } = this.props
     return (
@@ -49,7 +52,8 @@ class Header extends Component {
               menuItems={[
                 <Link style={{textDecoration:'none'}} to={'/login'}><MenuItem primaryText="แจ้งออกห้องพัก" /></Link>,
                 <MenuItem primaryText="แจ้งย้ายห้องพัก" />,
-                <MenuItem primaryText="เแจ้งอุปกร์เสียหาย"  />
+                <MenuItem primaryText="แจ้งอุปกรณ์ชำรุด"  />,
+                <MenuItem primaryText="อื่นๆ"  />
               ]}
           />
           <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>คำนวณ</MenuItem></Link>
