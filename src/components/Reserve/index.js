@@ -1,7 +1,5 @@
-import React,{Component,PropTypes} from'react';
+import React,{Component} from'react';
 import Paper from 'material-ui/Paper';
-import {GridList, GridTile} from 'material-ui/GridList';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 
 const style = {
   height: 100,

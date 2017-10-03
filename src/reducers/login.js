@@ -1,19 +1,15 @@
 import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILURE,
-  LOGOUT_USER
-} from '../constants/actionTypes'
+  LOGOUT_USER_SUCCESS
+} from '../constants/actionTypes';
 
-const initialState = {
-  userName: null,
-  authed: false,
-  statusText: null
-}
+const initialState = [];
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case "persist/REHYDRATE":{
-      return {...state, ...action.payload}
+  case "persist/REHYDRATE":{
+      return {...state, ...action.payload.login}
     } 
     case LOGIN_USER_SUCCESS:
       return Object.assign({}, state, {
@@ -27,10 +23,11 @@ export default (state = initialState, action) => {
           'userName': null,
           'statusText': 'Invalid username/password.'
       });
-     case LOGOUT_USER:
+     case LOGOUT_USER_SUCCESS:
          return Object.assign({}, state, {
           'authed': false,
-          'userName': null
+          'userName': null,
+          'statusText': null
       });
     default:
       return state

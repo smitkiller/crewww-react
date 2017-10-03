@@ -19,13 +19,13 @@ class ReserveContainer extends Component {
     }
 
 	componentDidMount(){
-		this.onReloadReserves();
+		//this.onReloadReserves();
 	}
 
 	render(){
 		return(
 			<div>
-				<Header header="จองห้องพัก"/>
+				<Header txtTitle="จองห้องพัก"/>
 				<Reserve
 				  reserves={this.props.reserves}
 				  onReloadReserves={this.onReloadReserves} />

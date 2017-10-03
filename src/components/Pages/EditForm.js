@@ -1,4 +1,4 @@
-import React, { PropTypes,Component } from 'react'
+import React, {Component } from 'react'
 import { Field,reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { updatePage } from '../../actions/page'
@@ -10,16 +10,19 @@ const FIELDS = ['title', 'content']
 
   class EditPageForm extends Component {
 
-    renderTextField = (props) => (
-      <TextField
-        hintText={props.label}
-        floatingLabelText={props.label}
-        errorText={props.meta.touched && props.meta.error}
-        {...props.input}/>)
+        renderTextField = (props) => (
+          <div>
+            <TextField
+              hintText={props.label}
+              floatingLabelText={props.label}
+              errorText={props.meta.touched && props.meta.error}
+              {...props.input} />
+          </div>
+        )
 
 
     render() {
-      const { id, title, content,handleSubmit} = this.props
+      const {handleSubmit} = this.props
 
     return (
           <div className="App">

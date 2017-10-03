@@ -5,14 +5,24 @@ import { Field } from 'redux-form'
 const styleLogin = {
   'margin': '2% 40%',
   color:'red'
-}
+};
 
+const renderTextField = props => (
+  <div>
+    <TextField
+      hintText={props.label}
+      floatingLabelText={props.label}
+      type={props.type}
+      errorText={props.meta.touched && props.meta.error}
+      {...props.input} />
+  </div>
+)
 
 class Login extends Component{
 
   render(){
-    const {fields,login,handleSubmit}=this.props
-    const {email,password} = fields
+    const {login,handleSubmit}=this.props
+
     return(
         <div style={styleLogin}>{login.statusText}
 
@@ -49,11 +59,3 @@ Login.propTypes = {
 
 export default Login;
 
-const renderTextField = props => (
-  <TextField
-    hintText={props.label}
-    floatingLabelText={props.label}
-    type={props.type}
-    errorText={props.meta.touched && props.meta.error}
-    {...props.input}/>
-)

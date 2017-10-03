@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import Page from './Page'
+//import Page from './Page'
 import Header from '../Header'
 import FlatButton from 'material-ui/FlatButton'
-import DeleteIcon from 'material-ui/svg-icons/action/delete-forever'
+//import DeleteIcon from 'material-ui/svg-icons/action/delete-forever'
 import AddIcon from 'material-ui/svg-icons/image/add-to-photos'
 import EditIcon from 'material-ui/svg-icons/image/edit'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
@@ -20,7 +20,7 @@ const Pages = ({
   onRemove
 }) => (
   <div>
-    <Header header='Pages'/>
+    <Header txtTitle='Pages'/>
     <FlatButton
       onClick={() => onReloadPages()}
       label="Reload Pages"
@@ -70,4 +70,4 @@ Pages.propTypes = {
   onRemove:PropTypes.func
 }
 
-export default Pages
+export default Pages;

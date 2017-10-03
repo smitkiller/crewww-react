@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
-import Paper from 'material-ui/Paper'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+//import { Link } from 'react-router'
+//import Paper from 'material-ui/Paper'
+import {Card, CardHeader, CardMedia, CardTitle} from 'material-ui/Card'
 import themeSite from './img/4.png'
 import logo from './img/logoCrewww.png'
 

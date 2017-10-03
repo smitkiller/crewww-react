@@ -18,7 +18,7 @@ const PageForm = ({
 
   return (
     <div className="App">
-    <Header header='New'/>
+    <Header txtTitle='New'/>
     <form
       onSubmit={handleSubmit}
       className='form'>

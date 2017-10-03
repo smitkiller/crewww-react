@@ -68,6 +68,7 @@
     "express": "^4.15.2",
     "isomorphic-fetch": "^2.2.1",
     "json-server": "^0.9.5",
+    "prop-types": "^15.6.0",
     "react": "^15.4.2",
     "react-bootstrap": "^0.31.1",
     "react-dom": "^15.4.2",

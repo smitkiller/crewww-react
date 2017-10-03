@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { loginUser } from '../actions/login'
 import Login from '../components/Login'
 import Header from '../components/Header'
@@ -11,14 +11,13 @@ const FIELDS = ['email', 'password']
 class LoginContainer extends Component{
   
   render () {
-    const { fields, handleSubmit } = this.props
+    const { handleSubmit } = this.props
 
     return (
       <div>
-      <Header/>
+      <Header txtTitle="Login"/>
        <Login
        login={this.props.login}
-       fields={fields}
        handleSubmit={handleSubmit}/>
        </div>
     );

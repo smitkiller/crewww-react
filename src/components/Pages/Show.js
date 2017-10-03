@@ -7,7 +7,7 @@ const ShowPage = ({
 }) => {
   return (
     <div className="App">
-    <Header header='Show'/>
+    <Header txtTitle='Show'/>
     <article>
       <h1>{title}</h1>
       <p>

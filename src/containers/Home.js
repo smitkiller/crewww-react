@@ -28,7 +28,7 @@ class HomesContainer extends Component {
   render() {
     return (
       <div>
-     <Header header='Home'/>
+     <Header txtTitle='Home'/>
       <Homes datas={this.props.datas}/>
       </div>
     )
@@ -39,3 +39,5 @@ export default connect(
   (state) => ({ datas: state.datas }),
   { onLoadDatas: loadDatas }
 )(HomesContainer)
+
+export default HomesContainer;

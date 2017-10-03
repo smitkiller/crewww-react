@@ -6,7 +6,7 @@ class App extends Component {
     return (
 
       <div className="App">
-      <Header/>
+      <Header txtTitle="App" privacy="true"/>
         <p className="App-intro">
           xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </p>
