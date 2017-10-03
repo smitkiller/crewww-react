@@ -40,4 +40,3 @@ export default connect(
   { onLoadDatas: loadDatas }
 )(HomesContainer)
 
-export default HomesContainer;
