@@ -26,13 +26,11 @@ class ShowPageContainer extends Component {
 
 
   render() {
-    const { id, title, content } = this.props.page
-
+ //  const { title, content } = this.props.page
+//console.log('skdlkfjsd',this.props.page)
     return (
       <ShowPage
-        id={id}
-        title={title}
-        content={content}/>
+        page={this.props.page}/>
     )
   }
 }

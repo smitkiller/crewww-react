@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
           'authed': true,
           'userName':action.name,
-          'statusText': 'You have been successfully logged in.'
+          'statusText': null
       });
     case LOGIN_USER_FAILURE:
       return Object.assign({}, state, {

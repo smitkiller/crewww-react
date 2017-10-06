@@ -1,26 +1,26 @@
-import React, { PropTypes } from 'react'
-import Header from '../Header'
+import React, { PropTypes } from 'react';
+import Header from '../Header'; 
 
 const ShowPage = ({
-  title,
-  content
+  page
 }) => {
   return (
     <div className="App">
     <Header txtTitle='Show'/>
-    <article>
-      <h1>{title}</h1>
-      <p>
-        {content}
-      </p>
-    </article>
+<article>
+
+        <div >
+          <h1>{page.title}</h1>
+          <h1>{page.content}</h1>  
+          </div>
+
+        </article>
     </div>
   )
 }
 
 ShowPage.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired
+  page: PropTypes.object.isRequired,
 }
 
 export default ShowPage

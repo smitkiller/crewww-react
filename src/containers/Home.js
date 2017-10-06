@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { loadDatas } from '../actions/data'
 import Homes from '../components/Home'
@@ -6,7 +7,7 @@ import Header from '../components/Header'
 
 class HomesContainer extends Component {
   static propTypes = {
-    datas: PropTypes.array.isRequired
+    datas: PropTypes.array
   }
 
   static need = [
@@ -28,7 +29,7 @@ class HomesContainer extends Component {
   render() {
     return (
       <div>
-     <Header txtTitle='Home'/>
+     <Header header='Home'/>
       <Homes datas={this.props.datas}/>
       </div>
     )
@@ -39,4 +40,3 @@ export default connect(
   (state) => ({ datas: state.datas }),
   { onLoadDatas: loadDatas }
 )(HomesContainer)
-

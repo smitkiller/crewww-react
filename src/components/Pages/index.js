@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router'
 //import Page from './Page'
 import Header from '../Header'
@@ -7,8 +8,8 @@ import FlatButton from 'material-ui/FlatButton'
 import AddIcon from 'material-ui/svg-icons/image/add-to-photos'
 import EditIcon from 'material-ui/svg-icons/image/edit'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
-import DialogDelete from '../DialogDelete'
-
+import DialogDelete from '../DialogDelete';
+import _ from 'lodash';
 
 const style = {
   margin: 12,
@@ -39,15 +40,15 @@ const Pages = ({
       </TableHeader>
       <TableBody>
         {
-          pages.map((page) => (
-            <TableRow key={page.id}>
-              <TableRowColumn>{page.id}</TableRowColumn>
+          _.map(pages,(page,key) => (
+            <TableRow key={key}>
+              <TableRowColumn>{key}</TableRowColumn>
               <TableRowColumn>{page.title}</TableRowColumn>
               <TableRowColumn>
-                <Link to={{ pathname: `/pages/${page.id}` }}><FlatButton label="Show" secondary={true} /></Link>
+                <Link to={{ pathname: `/pages/${key}` }}><FlatButton label="Show" secondary={true} /></Link>
               </TableRowColumn>
               <TableRowColumn>
-                <Link to={{ pathname: `/pages/edit/${page.id}` }}><FlatButton icon={<EditIcon/>} style={style} /></Link>
+                <Link to={{ pathname: `/pages/edit/${key}` }}><FlatButton icon={<EditIcon/>} style={style} /></Link>
               </TableRowColumn>
               <TableRowColumn>
               <DialogDelete

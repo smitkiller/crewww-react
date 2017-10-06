@@ -1,6 +1,7 @@
-import { CALL_API } from 'redux-api-middleware'
-import { push } from 'react-router-redux'
-import { PAGES_ENDPOINT } from '../constants/endpoints'
+import { CALL_API } from 'redux-api-middleware';
+import { push } from 'react-router-redux';
+import { PAGES_ENDPOINT,PAGES_ENDPOINT_UPDATE } from '../constants/endpoints';
+import { browserHistory } from 'react-router';
 import {
   LOAD_PAGES_REQUEST,
   LOAD_PAGES_SUCCESS,
@@ -57,7 +58,9 @@ export const createPage = (values) => (
             type: CREATE_PAGE_SUCCESS,
             payload: (_action, _state, res) => {
               return res.json().then((page) => {
-                dispatch(push(`/pages/${page.id}`))
+               // dispatch(push(`/pages/${page.id}`))
+               browserHistory.push(`/pages`);
+
                 return page
               })
             }
@@ -92,10 +95,12 @@ export const updatePage = (values) => (
       [CALL_API]: {
         endpoint: `${PAGES_ENDPOINT}/${values.id}`,
         headers: {
+          'Access-Control-Allow-Origin': '*',
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        method: 'PATCH',
+        method: 'PUT',
+        mode: 'no-cors',
         body: JSON.stringify(values),
         types: [
           UPDATE_PAGE_REQUEST,
@@ -103,7 +108,11 @@ export const updatePage = (values) => (
             type: UPDATE_PAGE_SUCCESS,
             payload: (_action, _state, res) => {
               return res.json().then((page) => {
-                dispatch(push(`/pages`))
+               // console.log('===========================>',page);
+              //  dispatch(push(`/pages/${page.id}`))
+              // browserHistory.push(`/pages/${page.id}`);
+              browserHistory.push(`/pages`);
+
                 return page
               })
             }

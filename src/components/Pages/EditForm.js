@@ -67,8 +67,8 @@ EditPageForm = connect(
   (state, ownProps) => ({
     initialValues:{
       id:ownProps.id,
-      title:ownProps.title,
-      content:ownProps.content
+      title:ownProps.page.title,
+      content:ownProps.page.content
     }
   })
 )(EditPageForm)

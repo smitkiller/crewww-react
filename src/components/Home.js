@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react'
-//import { Link } from 'react-router'
-//import Paper from 'material-ui/Paper'
-import {Card, CardHeader, CardMedia, CardTitle} from 'material-ui/Card'
+import React,{PropTypes} from 'react'
+//import PropTypes from 'prop-types';
+import { Link } from 'react-router'
+import Paper from 'material-ui/Paper'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import themeSite from './img/4.png'
 import logo from './img/logoCrewww.png'
 
@@ -27,19 +28,20 @@ const Homes = ({
             <img src={themeSite} alt="" />
           </CardMedia>
           <CardTitle title="Card title" subtitle="Card subtitle" />
-          {/*
-            datas.map((data) => (
-          <CardText key={data.id} style={style}>
+          {
+            datas.map((data,key) => (
+          <CardText key={key} style={style}>
           {data.title}
           </CardText>
         )
-        )*/}
+        )}
         </Card>
 </div>
 )
 
 Homes.propTypes = {
-  datas: PropTypes.array.isRequired
+  datas: PropTypes.array.isRequired,
+  title: PropTypes.object.isRequired
 }
 
 export default Homes
