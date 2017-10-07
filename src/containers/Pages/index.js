@@ -6,7 +6,6 @@ import Pages from '../../components/Pages/index'
 
 class PagesContainer extends Component {
   static propTypes = {
-    pages: PropTypes.array.isRequired,
     onLoadPages: PropTypes.func.isRequired,
     onDelete:PropTypes.func
   }

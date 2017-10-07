@@ -77,12 +77,19 @@ export const deletePage = (id) => (
   (dispatch) =>
     dispatch({
   [CALL_API]: {
-    endpoint: `${PAGES_ENDPOINT}/${id}`,
+    endpoint: `${PAGES_ENDPOINT_UPDATE}/${id}/.json`,
     method: 'DELETE',
     types: [DELETE_PAGE_REQUEST,
       {
         type:DELETE_PAGE_SUCCESS,
-        payload:dispatch(push(`/home`))
+        payload: (_action, _state, res) => {
+              return res.json().then((page) => {
+               // dispatch(push(`/pages/${page.id}`))
+               browserHistory.push(`/pages`);
+
+                return page
+              })
+          }
       },
       DELETE_PAGE_FAILURE]
   }
@@ -90,17 +97,17 @@ export const deletePage = (id) => (
 )
 
 export const updatePage = (values) => (
+  //console.log('==========================>',values)
   (dispatch) =>
     dispatch({
       [CALL_API]: {
-        endpoint: `${PAGES_ENDPOINT}/${values.id}`,
+        endpoint: `${PAGES_ENDPOINT_UPDATE}/${values.id}/.json`,
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         method: 'PUT',
-        mode: 'no-cors',
         body: JSON.stringify(values),
         types: [
           UPDATE_PAGE_REQUEST,
@@ -122,5 +129,4 @@ export const updatePage = (values) => (
       }
     }
   )
-
 )

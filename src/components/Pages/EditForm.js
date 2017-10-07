@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { updatePage } from '../../actions/page'
 import { FlatButton, TextField } from 'material-ui'
 import Header from '../Header'
+import PropTypes from 'prop-types';
 
 const FIELDS = ['title', 'content']
 
@@ -72,5 +73,11 @@ EditPageForm = connect(
     }
   })
 )(EditPageForm)
+
+EditPageForm.propTypes = {
+  id: PropTypes.object,
+  title: PropTypes.object,
+  content: PropTypes.object
+}
 
 export default EditPageForm

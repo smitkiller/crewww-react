@@ -52,7 +52,7 @@ const Pages = ({
               </TableRowColumn>
               <TableRowColumn>
               <DialogDelete
-                id={page.id}
+                id={key}
                 onRemove={onRemove}
               />
 
@@ -66,7 +66,6 @@ const Pages = ({
 )
 
 Pages.propTypes = {
-  pages: PropTypes.array.isRequired,
   onReloadPages: PropTypes.func.isRequired,
   onRemove:PropTypes.func
 }
