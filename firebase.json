@@ -17,7 +17,7 @@
     } ],
     "rewrites": [ {
       "source": "/app/**",
-      "destination": "/app/index.html"
+      "destination": "/index.html"
     } ],
     "headers": [ {
       "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
