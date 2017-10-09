@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
-import Header from '../Header'; 
+
 
 const ShowPage = ({
   page
 }) => {
   return (
     <div className="App">
-    <Header txtTitle='Show'/>
+  
 <article>
 
         <div >

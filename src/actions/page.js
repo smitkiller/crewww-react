@@ -1,6 +1,6 @@
 import { CALL_API } from 'redux-api-middleware';
 import { push } from 'react-router-redux';
-import { PAGES_ENDPOINT,PAGES_ENDPOINT_UPDATE } from '../constants/endpoints';
+import { PAGES_ENDPOINT,PAGE_ENDPOINT } from '../constants/endpoints';
 import { browserHistory } from 'react-router';
 import {
   LOAD_PAGES_REQUEST,
@@ -35,7 +35,7 @@ export const loadPages = () => ({
 
 export const loadPage = (id) => ({
   [CALL_API]: {
-    endpoint: `${PAGES_ENDPOINT}/${id}`,
+    endpoint: `${PAGE_ENDPOINT}/${id}/.json`,
     method: 'GET',
     types: [LOAD_PAGE_REQUEST, LOAD_PAGE_SUCCESS, LOAD_PAGE_FAILURE]
   }
@@ -77,17 +77,15 @@ export const deletePage = (id) => (
   (dispatch) =>
     dispatch({
   [CALL_API]: {
-    endpoint: `${PAGES_ENDPOINT_UPDATE}/${id}/.json`,
+    endpoint: `${PAGE_ENDPOINT}/${id}/.json`,
     method: 'DELETE',
     types: [DELETE_PAGE_REQUEST,
       {
         type:DELETE_PAGE_SUCCESS,
         payload: (_action, _state, res) => {
               return res.json().then((page) => {
-               // dispatch(push(`/pages/${page.id}`))
-               browserHistory.push(`/pages`);
-
-                return page
+               dispatch(loadPages());
+             
               })
           }
       },
@@ -101,7 +99,7 @@ export const updatePage = (values) => (
   (dispatch) =>
     dispatch({
       [CALL_API]: {
-        endpoint: `${PAGES_ENDPOINT_UPDATE}/${values.id}/.json`,
+        endpoint: `${PAGE_ENDPOINT}/${values.id}/.json`,
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Accept': 'application/json',

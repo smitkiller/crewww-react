@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
-import { loadPages,deletePage } from '../../actions/page'
-import Pages from '../../components/Pages/index'
+import { connect } from 'react-redux';
+import { loadPages,deletePage } from '../../actions/page';
+import Pages from '../../components/Pages/index';
+import Header from '../../components/Header';
 
 class PagesContainer extends Component {
   static propTypes = {
@@ -30,12 +31,16 @@ class PagesContainer extends Component {
     this.onReloadPages()
   }
 
+
   render() {
     return (
+      <div>
+      <Header txtTitle='Pages'/>
       <Pages
         pages={this.props.pages}
         onReloadPages={this.onReloadPages}
         onRemove={this.onRemove} />
+      </div>
     )
   }
 }

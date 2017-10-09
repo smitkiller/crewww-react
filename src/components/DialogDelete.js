@@ -28,7 +28,8 @@ class DialogDelete extends Component{
       <FlatButton
       label="Submit"
       primary={true}
-      onTouchTap={() => onRemove(id)}/>
+      onClick={this.handleClose}
+      onTouchTap={(e) => onRemove(id)}/>
     ]
 
     return(

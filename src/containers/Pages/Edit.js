@@ -1,17 +1,19 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadPage } from '../../actions/page';
+//import { loadPage } from '../../actions/page';
 import { getPageById } from '../../reducers/pages';
 import EditForm from '../../components/Pages/EditForm';
+import Header from '../../components/Header';
 import _ from 'lodash'; 
 
 class EditPageContainer extends Component {
   static propTypes = {
-    id: PropTypes.object,
-    page: PropTypes.object.isRequired,
-    onLoadPage: PropTypes.func.isRequired
+    id: PropTypes.string,
+    page: PropTypes.object.isRequired
+  //  onLoadPage: PropTypes.func.isRequired
   }
-
+/*
   static need = [
     (params) => (loadPage(params.id))
   ]
@@ -26,23 +28,33 @@ class EditPageContainer extends Component {
     onLoadPage(id)
 
   }
-
+*/
 
   render() {
    // console.log('sssssssssssssssssssss',this.props.params.id);
 
     return (
-      <EditForm
-          id= {this.props.params.id}
-          page={this.props.page}
-      />
+      <div>
+        <Header 
+          header="New"
+        />
+        <EditForm
+            id={this.props.params.id}
+            page={this.props.page}
+        />
+      </div>
     )
   }
 }
 
 
+export default connect(
+  (state, ownProps) => ({ page: getPageById(state, ownProps.params.id)})
+)(EditPageContainer)
 
+/*
 export default connect(
   (state, ownProps) => ({ page: getPageById(state, ownProps.params.id)}),
   { onLoadPage: loadPage }
 )(EditPageContainer)
+*/

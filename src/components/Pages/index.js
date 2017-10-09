@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router'
 //import Page from './Page'
-import Header from '../Header'
+
 import FlatButton from 'material-ui/FlatButton'
 //import DeleteIcon from 'material-ui/svg-icons/action/delete-forever'
 import AddIcon from 'material-ui/svg-icons/image/add-to-photos'
@@ -21,7 +21,6 @@ const Pages = ({
   onRemove
 }) => (
   <div>
-    <Header txtTitle='Pages'/>
     <FlatButton
       onClick={() => onReloadPages()}
       label="Reload Pages"

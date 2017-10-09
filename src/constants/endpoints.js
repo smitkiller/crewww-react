@@ -9,7 +9,7 @@ const API_ROOT = 'https://crewww-c780d.firebaseio.com'
 
 
 export const PAGES_ENDPOINT = `${API_ROOT}/pages.json`
-export const LOGIN_ENDPOINT = `${API_ROOT}/users.json`
+export const USERS_ENDPOINT = `${API_ROOT}/users.json`
 export const DATAS_ENDPOINT = `${API_ROOT}/datas.json`
-export const PAGES_ENDPOINT_UPDATE = `${API_ROOT}/pages`
+export const PAGE_ENDPOINT = `${API_ROOT}/pages`
 

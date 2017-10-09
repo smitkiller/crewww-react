@@ -3,7 +3,6 @@ import { Field,reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { updatePage } from '../../actions/page'
 import { FlatButton, TextField } from 'material-ui'
-import Header from '../Header'
 import PropTypes from 'prop-types';
 
 const FIELDS = ['title', 'content']
@@ -27,7 +26,6 @@ const FIELDS = ['title', 'content']
 
     return (
           <div className="App">
-          <Header header='New'/>
           <form
             onSubmit={handleSubmit}
             className='form'>
@@ -75,7 +73,7 @@ EditPageForm = connect(
 )(EditPageForm)
 
 EditPageForm.propTypes = {
-  id: PropTypes.object,
+  id: PropTypes.string,
   title: PropTypes.object,
   content: PropTypes.object
 }
