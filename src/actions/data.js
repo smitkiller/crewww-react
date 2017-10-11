@@ -1,5 +1,4 @@
 import { CALL_API } from 'redux-api-middleware';
-import { getDatas } from '../Auth/datas';
 import { DATAS_ENDPOINT } from '../constants/endpoints';
 import {
   LOAD_DATAS_REQUEST,

@@ -12,4 +12,4 @@ export const PAGES_ENDPOINT = `${API_ROOT}/pages.json`
 export const USERS_ENDPOINT = `${API_ROOT}/users.json`
 export const DATAS_ENDPOINT = `${API_ROOT}/datas.json`
 export const PAGE_ENDPOINT = `${API_ROOT}/pages`
-
+export const ROOMSCOL_ENDPOINT = `${API_ROOT}/roomscol.json`

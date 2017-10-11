@@ -1,45 +1,45 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import FlatButton from 'material-ui/FlatButton'
-import DeleteIcon from 'material-ui/svg-icons/action/delete-forever'
-import AddIcon from 'material-ui/svg-icons/image/add-to-photos'
 import EditIcon from 'material-ui/svg-icons/image/edit'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
-import DialogDelete from '../Dialog/DialogDelete'
-
+import DialogRoomsCol from '../Dialog/DialogRoomsCol';
+import _ from 'lodash';
 
 const style = {
   margin: 12,
 };
 
-const Users = ({
-  users,
-  onReloadUsers,
-  onRemove
+const Roomscol = ({
+  roomscol,handleSubmit
 }) => (
   <div>
-    <FlatButton
-      label="Reload Users"
-    />
-    <FlatButton icon={<AddIcon/>} style={style} />
+  {roomscol
+  ?<div></div>
+  :<DialogRoomsCol
+        handleSubmit={handleSubmit}/>
+    
+  }
+     
     <hr />
     <Table>
      <TableHeader>
        <TableRow>
-       <TableHeaderColumn>ID</TableHeaderColumn>
-        <TableHeaderColumn>Title</TableHeaderColumn>
-        <TableHeaderColumn></TableHeaderColumn>
+       <TableHeaderColumn>จำนวนชั้น</TableHeaderColumn>
+        <TableHeaderColumn>จำนวนห้องแต่ละชั้น</TableHeaderColumn>
+        <TableHeaderColumn>จำนวนห้องทั้งหมด</TableHeaderColumn>
         <TableHeaderColumn></TableHeaderColumn>
          <TableHeaderColumn></TableHeaderColumn>
       </TableRow>
       </TableHeader>
       <TableBody>
-
-            <TableRow >
-              <TableRowColumn></TableRowColumn>
-              <TableRowColumn></TableRowColumn>
+        {
+          _.map(roomscol,(value,key)=>(
+            <TableRow key={key} >
+              <TableRowColumn>{value.rows}</TableRowColumn>
+              <TableRowColumn>{value.col}</TableRowColumn>
               <TableRowColumn>
-                <FlatButton label="Show" secondary={true} />
+                
               </TableRowColumn>
               <TableRowColumn>
                 <FlatButton icon={<EditIcon/>} style={style} />
@@ -49,16 +49,15 @@ const Users = ({
 
               </TableRowColumn>
             </TableRow>
-
+            ))
+          }
       </TableBody>
     </Table>
   </div>
 )
 
-Users.propTypes = {
-  users: PropTypes.array.isRequired,
-  onReloadUsers: PropTypes.func.isRequired,
-  onRemove:PropTypes.func
+Roomscol.propTypes = {
+  handleSubmit: PropTypes.func
 }
 
-export default Users;
+export default Roomscol;

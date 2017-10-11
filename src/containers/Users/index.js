@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { loadUsers,deleteUser } from '../../actions/user'
-import Users from '../../components/Users/index'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { loadUsers,deleteUser } from '../../actions/user';
+import Users from '../../components/Users';
+import Header from '../../components/Header';
 
 class UsersContainer extends Component {
   static propTypes = {
@@ -27,20 +28,26 @@ class UsersContainer extends Component {
   }
 
   componentDidMount() {
-    this.onReloadUsers()
+   // this.onReloadUsers()
   }
 
   render() {
     return (
-      <Users
-        users={this.props.users}
-        onReloadUsers={this.onReloadUsers}
-        onRemove={this.onRemove} />
+      <div><div>
+          <Header txtTitle='Users'/>
+          <Users />
+     
+     </div>
+      </div>
     )
   }
 }
 
+/*
 export default connect(
   (state) => ({ users: state.users }),
   { onLoadUsers: loadUsers,onDelete:deleteUser }
 )(UsersContainer)
+*/
+
+export default UsersContainer;

@@ -8,7 +8,7 @@ import FlatButton from 'material-ui/FlatButton'
 import AddIcon from 'material-ui/svg-icons/image/add-to-photos'
 import EditIcon from 'material-ui/svg-icons/image/edit'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
-import DialogDelete from '../DialogDelete';
+import DialogDelete from '../Dialog/DialogDelete';
 import _ from 'lodash';
 
 const style = {

@@ -11,6 +11,8 @@ import EditPage from '../containers/Pages/Edit';
 import Login from '../containers/Login';
 import Reserve from '../containers/Reserve';
 import ReserveList from '../containers/Reserve/ReserveList';
+import Users from '../containers/Users';
+import RoomsCol from '../containers/Rooms';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
@@ -40,14 +42,15 @@ class Routes extends Component {
   const {history} = this.props
     return (
       <div>
-         <Router history={history}>
-         <div>
+         <Router history={history}>       
           <Route path="/" component={Home} />
           <Route path="app" component={App} onEnter={(nextState,replace)=>{privateAuth(this.props.authed,nextState,replace)}}/>
           <Route path="about" component={About}/>
           <Route path="reserve" component={Reserve}/>
           <Route path="reserveList" component={ReserveList} />
           <Route path="home" component={Home}/>
+          <Route path="users" component={Users}/>
+          <Route path="roomcol" component={RoomsCol}/>
           <Route path="login" onEnter={privateLogin(this.props.authed)} component={Login}  />
           <Route path='pages'>
             <IndexRoute component={Pages} />
@@ -58,8 +61,7 @@ class Routes extends Component {
            <Route path='edit'>
                   <Route path=':id' component={EditPage} />
             </Route>
-          </Route>
-          </div>
+          </Route>      
           </Router>
       </div>
     )

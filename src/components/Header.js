@@ -63,7 +63,8 @@ class Header extends Component {
           />
           <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>คำนวณ</MenuItem></Link>
           <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>ติดต่อ</MenuItem></Link>
-      
+          <Link style={{textDecoration:'none'}} to={'/users'}><MenuItem primaryText="จัดการผู้ใช้ระบบ" /></Link>
+          <Link style={{textDecoration:'none'}} to={'/roomcol'}><MenuItem primaryText="จัดการจำนวนห้องพัก" /></Link>
           {this.props.authed
                     ? <Link style={{textDecoration:'none'}} onClick={this.onLogout}><MenuItem>Logout</MenuItem></Link>
                     : <Link style={{textDecoration:'none'}} to={'/login'}><MenuItem>Login</MenuItem></Link>}
