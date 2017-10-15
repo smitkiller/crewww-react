@@ -5,9 +5,10 @@ import pages from './pages';
 import datas from './datas';
 import login from './login';
 import rooms from './rooms';
+import roomscol from './roomscol';
 
 export default combineReducers({
   form: formReducer,
   routing: routerReducer,
-  pages,datas,login,rooms
+  pages,datas,login,rooms,roomscol
 })

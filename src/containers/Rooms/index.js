@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadRoomscol,createRoomscol } from '../../actions/room';
-import Roomscol from '../../components/Rooms';
+import { loadRoomscol,addRomms } from '../../actions/room';
+import Roomscol from '../../components/Rooms/index';
 import Header from '../../components/Header';
 import { reduxForm } from 'redux-form'
 
-const FIELDS = ['rows', 'col'];
+//const FIELDS = ['rows', 'col'];
 
 class RoomscolContainer extends Component {
   static propTypes = {
@@ -46,18 +46,8 @@ class RoomscolContainer extends Component {
   }
 }
 
-RoomscolContainer = reduxForm({
-    form: 'roomscol',
-    fields: FIELDS,
-    validate: (values, props) =>
-      FIELDS.reduce((errors, field) =>
-        values[field] ? errors : { ...errors, [field]: 'Required' }, {}),
-    onSubmit:(values,dispatch)=> dispatch(createRoomscol(values))
-}
-)(RoomscolContainer)
-
 RoomscolContainer = connect(
-  (state) => ({ roomscol: state.rooms }),
+  (state) => ({ roomscol: state.roomscol }),
   { onLoadRoomscol: loadRoomscol }
 )(RoomscolContainer)
 

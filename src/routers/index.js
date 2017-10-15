@@ -13,6 +13,7 @@ import Reserve from '../containers/Reserve';
 import ReserveList from '../containers/Reserve/ReserveList';
 import Users from '../containers/Users';
 import RoomsCol from '../containers/Rooms';
+import NewRooms from '../containers/Rooms/NewRooms';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
@@ -50,7 +51,10 @@ class Routes extends Component {
           <Route path="reserveList" component={ReserveList} />
           <Route path="home" component={Home}/>
           <Route path="users" component={Users}/>
-          <Route path="roomcol" component={RoomsCol}/>
+          <Route path="roomcol">
+              <IndexRoute component={RoomsCol} />
+              <Route path="new" component={NewRooms}/>
+          </Route>
           <Route path="login" onEnter={privateLogin(this.props.authed)} component={Login}  />
           <Route path='pages'>
             <IndexRoute component={Pages} />

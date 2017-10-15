@@ -1,3 +1,4 @@
+/* File TEST */
 import React,{ Component } from 'react';
 import {Dialog,FlatButton} from 'material-ui';
 import AddIcon from 'material-ui/svg-icons/image/add-to-photos';

@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react'
-import { Field } from 'redux-form'
-
+/*  File Test */
+import React, { PropTypes } from 'react';
+import { Field } from 'redux-form';
 //import { FileUpload } from 'redux-file-upload'
-import { FlatButton, TextField } from 'material-ui'
+import { FlatButton, TextField } from 'material-ui';
 //import ImageUpload from '../ImageUpload'
 
 const renderTextField = props => (
@@ -34,6 +34,7 @@ const RoomsColForm = ({
        component={renderTextField} />
 
       </div>
+
  
     </form>
     </div>
