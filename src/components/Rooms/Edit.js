@@ -35,17 +35,19 @@ const required=(value)=>(value?undefined:'Required')
     state={
           value:1
       }
+      componentDidMOunt(){
+        this.levelTotal();
+      }
     componentWillMount(){
         this.levelTotal();
       }
     handleChange = (event, index, value) => this.setState({value});
     levelTotal = () =>(
-            this.setState({value:this.props.roomcol.map((val)=>val.totalLevel)})    
+            this.props.roomcol.map((val)=>this.setState({value:val.totalLevel}))
         )
   
         render(){
           const { handleSubmit} = this.props;
-         
   
           const items = [];
           const itemsInput = [];
