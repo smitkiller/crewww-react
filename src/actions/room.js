@@ -19,6 +19,14 @@ export const loadRoomscol = () => ({
   }
 })
 
+export const loadRooms = () => ({
+  [CALL_API]:{
+    endpoint:ROOMS_ENDPOINT,
+    method:'GET',
+    types:[LOAD_ROOMS_REQUEST,LOAD_ROOMS_SUCCESS,LOAD_ROOMS_FAILURE]
+  }
+})
+
 const createRooms = (values) =>(
   (dispatch) =>
     dispatch({
