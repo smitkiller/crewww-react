@@ -14,10 +14,3 @@ export default (state = initialState, action) => {
   }
 }
 
-
-export const getRoomsById = (state, id) => (
- // console.log('gooooooodddd',id)
-  //state.pages.find((page,key) => key === +id) || { title: '', content: '' }
- _.find(state.rooms,(rooom,key)=> key === id) || {title: '' , content: '' , id : ''}
- // state.pages.find((page,key) => key === +id) || {title: '' , content: '' }
-)

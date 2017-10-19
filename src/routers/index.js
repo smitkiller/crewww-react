@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-//import { syncHistoryWithStore } from 'react-router-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { Router,Route,IndexRoute } from 'react-router';
 import App from '../components/App';
 import Home from '../containers/Home';
@@ -14,6 +14,7 @@ import ReserveList from '../containers/Reserve/ReserveList';
 import Users from '../containers/Users';
 import RoomsCol from '../containers/Rooms';
 import NewRooms from '../containers/Rooms/NewRooms';
+import EditRoomscol from '../containers/Rooms/EditFormCol';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
@@ -54,6 +55,10 @@ class Routes extends Component {
           <Route path="roomcol">
               <IndexRoute component={RoomsCol} />
               <Route path="new" component={NewRooms}/>
+              <Route path="edit" >
+                          <Route path=':id' component={EditRoomscol} />
+              </Route>
+
           </Route>
           <Route path="login" onEnter={privateLogin(this.props.authed)} component={Login}  />
           <Route path='pages'>

@@ -22,6 +22,14 @@ export default (history, initialState) => {
     compose(applyMiddleware(...middlewares),autoRehydrate())
   )
 
+    if (module.hot) {
+    module.hot.accept('../reducers', () => {
+      System.import('../reducers').then(nextRootReducer =>
+        store.replaceReducer(nextRootReducer.default)
+      )
+    })
+  }
+
 persistStore(store)
 
 

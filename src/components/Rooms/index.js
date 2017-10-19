@@ -12,9 +12,7 @@ const style = {
   margin: 12,
 };
 
-const Roomscol = ({
-  roomscol,handleSubmit
-}) => (
+const Roomscol = ({roomscol}) => (
   <div>
   {/*roomscol
   ?<div></div>
@@ -39,8 +37,8 @@ const Roomscol = ({
 
           _.map(roomscol,(value,key)=>(
             <TableRow key={key} >
-              <TableRowColumn>{value[0].level.num}</TableRowColumn>
-              <TableRowColumn>{value[0].total.rooms}</TableRowColumn>
+              <TableRowColumn>{value.totalLevel}</TableRowColumn>
+              <TableRowColumn>{value.totalRooms}</TableRowColumn>
               <TableRowColumn></TableRowColumn>
               <TableRowColumn>
                 <Link to={{ pathname: `/roomcol/edit/${key}` }}><FlatButton icon={<EditIcon/>} style={style} /></Link>
@@ -58,9 +56,5 @@ const Roomscol = ({
   </div>
 )
 
-Roomscol.propTypes = {
-  handleSubmit: PropTypes.func,
-  rooms:PropTypes.number
-}
 
 export default Roomscol;

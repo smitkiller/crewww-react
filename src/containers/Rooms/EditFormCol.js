@@ -1,33 +1,47 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component ,PropTypes } from 'react';
 import { connect } from 'react-redux';
-//import { loadPage } from '../../actions/page';
-import { getRoomsColById } from '../../reducers/roomscol';
 import EditFormCol from '../../components/Rooms/Edit';
-import _ from 'lodash'; 
+import Header from '../../components/Header';
+import _ from 'lodash';
+import { loadRoomscol } from '../../actions/room';
 
 class EditFormColContainer extends Component {
   static propTypes = {
-    id: PropTypes.string,
-    page: PropTypes.object.isRequired
+    onLoadRoomscol: PropTypes.func.isRequired
+  }
+
+  static need = [
+    loadRoomscol
+  ]
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.roomcol !== nextProps.roomcol;
+  }
+
+  onReloadRoomscol = () => {
+    this.props.onLoadRoomscol()
   }
 
 
-  render() {
+  componentWillMount() {
+    this.onReloadRoomscol()
+  }
 
+  render() {
     return (
       <div>
+      <Header txtTitle="แก้ไขจำนวนห้องพัก"/>
         <EditFormCol
-            id={this.props.params.id}
-            page={this.props.page}
+           id={this.props.params.id}
+           roomcol={this.props.roomcol}
         />
       </div>
     )
   }
 }
 
-
-export default connect(
-  (state, ownProps) => ({ roomscol: getRoomsColById(state, ownProps.params.id)})
+EditFormColContainer = connect(
+  (state) => ({ roomcol: _.map(state.roomscol,(val)=>val)}),
+  { onLoadRoomscol: loadRoomscol }
 )(EditFormColContainer)
-
+export default EditFormColContainer;

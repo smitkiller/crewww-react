@@ -1,12 +1,21 @@
-import React, {Component } from 'react';
-import { Field,reduxForm } from 'redux-form';
+import React, {Component, PropTypes } from 'react';
+import { Field } from 'redux-form';
 import { connect } from 'react-redux';
-import { updatePage } from '../../actions/page';
 import { Dialog,FlatButton, TextField } from 'material-ui';
-import PropTypes from 'prop-types';
 import EditIcon from 'material-ui/svg-icons/image/edit';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import { reduxForm } from 'redux-form';
+import { updateRoomscol } from '../../actions/room';
+import _ from 'lodash';
 
-const FIELDS = ['title', 'content']
+const FIELDS = [];
+const styles = {
+   float       : 'none', 
+   width       : '200px',
+   marginLeft  : 'auto',
+   marginRight : 'auto'
+};
 
 
 const renderTextField = props => (
@@ -18,97 +27,100 @@ const renderTextField = props => (
   </div>
 )
 
+const numValidate = (value) =>(value && isNaN(Number(value))?'กรุณากรอกตัวเลข':undefined)
+const required=(value)=>(value?undefined:'Required')
+
   class EditFormCol extends Component {
 
-        state={
-          open:false
-        }
-        handleOpen= () =>{
-          this.setState({
-            open:true
-          })
-        }
-        handleClose= () =>{
-          this.setState({
-            open:false
-          })
-        }
-
-        render(){
-          const { handleSubmit} = this.props
-          const actions= [
-            <FlatButton
-            label="Cancel"
-            primary={true}
-            onTouchTap={this.handleClose}/>,
-
-            <FlatButton
-            type="submit"
-            label="Submit"
-            primary={true}
-            onTouchTap={handleSubmit}
-            />
-          ]
-
-    return (
-        <div>
-          <FlatButton icon={<EditIcon/>} onTouchTap={this.handleOpen} />
-          <Dialog
-          title="Delete"
-          actions={actions}
-          modal={true}
-          open={this.state.open}>
-                    <div className="App">
-                        <form
-                          onSubmit={handleSubmit}
-                          className='form'>
-                          <div>
-                            <Field
-                             name="rows"
-                             label="Rows"
-                             component={renderTextField} />
-                          </div>
-                          <div>
-                          <Field
-                           name="col"
-                           label="Col"
-                           component={renderTextField} />
-
-                          </div>
-                     
-                        </form>
-                  </div>
-           </Dialog>
-          </div>
+    state={
+          value:1
+      }
+    componentWillMount(){
+        this.levelTotal();
+      }
+    handleChange = (event, index, value) => this.setState({value});
+    levelTotal = () =>(
+            this.setState({value:this.props.roomcol.map((val)=>val.totalLevel)})    
         )
+  
+        render(){
+          const { handleSubmit} = this.props;
+         
+  
+          const items = [];
+          const itemsInput = [];
+            for (var i = 1; i < 100; i++ ) {
+                  items.push(<MenuItem value={i} key={i} primaryText={`${i} ชั้น`} />);
+            }
+
+            for(var m=0; m <this.state.value;m++){
+                 itemsInput.push(<Field key={m} name={m.toString()} label={`ชั้นที่ ${m+1}`} 
+                 component={renderTextField} validate={[required,numValidate]} />)
+            }
+
+
+          return (
+                <div style={styles}>
+                   <form onSubmit={handleSubmit}>
+                  <SelectField
+                    floatingLabelText="จำนวนชั้น"
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                  >
+                    {
+                      items
+                    }
+                  </SelectField>
+
+              
+                      {
+                         itemsInput
+                      }
+
+                      <FlatButton type='submit' label="Submit" />
+                   </form>
+
+                </div>
+         );
       }
 }
 
+EditFormCol.propTypes = {
+  handleSubmit:PropTypes.func
+} 
+
 EditFormCol = reduxForm(
   {
-    form: 'Editpage',
-    enableReinitialize : true,  // สำคัญ ทำให้ ownProps found
+    form: 'EditFormCol',
     fields: FIELDS,
-    validate: (values, props) =>
-      FIELDS.reduce((errors, field) =>
-        values[field] ? errors : { ...errors, [field]: 'Required' },{}),
-    onSubmit:(values,dispatch)=> dispatch(updatePage(values))
+    enableReinitialize : true,  // สำคัญ ทำให้ ownProps found
+    onSubmit:(values,dispatch)=> dispatch(updateRoomscol(values))
 })(EditFormCol)
 
-EditFormCol = connect(
-  (state, ownProps) => ({
-    initialValues:{
-      id:ownProps.id,
-      title:ownProps.page.title,
-      content:ownProps.page.content
+
+function mapStateToProps(state,ownProps){
+  var data=[];
+  var datas=[];
+  var values=[];
+    datas={
+      id:ownProps.id
     }
-  })
+
+      data=  _.map(state.roomscol,(val)=>val.levelRooms)
+      for(var i=0;i<data.length;i++){
+            values=data[i];  
+      }
+  
+
+   //console.log('dddddddddddddddddddddsssss',values)
+  return{
+    initialValues:values
+  }
+}
+EditFormCol = connect(mapStateToProps
 )(EditFormCol)
 
-EditFormCol.propTypes = {
-  id: PropTypes.string,
-  title: PropTypes.object,
-  content: PropTypes.object
-}
+
+
 
 export default EditFormCol;

@@ -6,7 +6,12 @@ import { FlatButton, TextField } from 'material-ui'
 import PropTypes from 'prop-types';
 
 const FIELDS = ['title', 'content']
-
+const middle = {
+   float       : 'none', 
+   width       : '200px',
+   marginLeft  : 'auto',
+   marginRight : 'auto'
+};
 
   class EditPageForm extends Component {
 
@@ -25,7 +30,7 @@ const FIELDS = ['title', 'content']
       const {handleSubmit} = this.props
 
     return (
-          <div className="App">
+          <div className="App" style={middle}>
           <form
             onSubmit={handleSubmit}
             className='form'>

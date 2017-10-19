@@ -3,8 +3,11 @@ import { FlatButton, TextField } from 'material-ui'
 import { Field } from 'redux-form'
 
 const styleLogin = {
-  'margin': '2% 40%',
-  color:'red'
+   float       : 'none', 
+   width       : '200px',
+   marginLeft  : 'auto',
+   marginRight : 'auto',
+   color       : 'red'
 };
 
 const renderTextField = props => (
@@ -18,13 +21,25 @@ const renderTextField = props => (
   </div>
 )
 
+
+
 class Login extends Component{
+  
+  state={
+    errorLogin:''
+  }
+
+ errorText=()=>{
+    this.setState({
+      errorLogin:this.props.login.statusText
+    })
+ }
 
   render(){
     const {login,handleSubmit}=this.props
 
     return(
-        <div style={styleLogin}>{login.statusText}
+        <div style={styleLogin}>{this.state.errorLogin}
 
     <form
       onSubmit={handleSubmit}
@@ -44,7 +59,7 @@ class Login extends Component{
        component={renderTextField} />
 
       </div>
-      <FlatButton type='submit' label="Submit" />
+      <FlatButton type='submit' label="Submit" onClick={this.errorText}/>
     </form>
     </div>
     )

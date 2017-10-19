@@ -29,7 +29,7 @@ class DialogDelete extends Component{
       label="Submit"
       primary={true}
       onClick={this.handleClose}
-      onTouchTap={(e) => onRemove(id)}/>
+      onTouchTap={() => onRemove(id)}/>
     ]
 
     return(

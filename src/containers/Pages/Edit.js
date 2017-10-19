@@ -36,7 +36,7 @@ class EditPageContainer extends Component {
     return (
       <div>
         <Header 
-          header="New"
+          txtTitle="New"
         />
         <EditForm
             id={this.props.params.id}

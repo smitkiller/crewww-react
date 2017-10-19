@@ -30,14 +30,11 @@ class RoomscolContainer extends Component {
   }
 
   render() {
-    const {fields,handleSubmit} = this.props;
     return (
       <div><div>
           <Header txtTitle='จัดการจำนวนห้อง'/>
           <Roomscol 
               roomscol={this.props.roomscol}
-              fields={fields}
-              handleSubmit={handleSubmit}
           />
      
      </div>

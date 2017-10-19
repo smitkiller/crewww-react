@@ -3,14 +3,9 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import { Field } from 'redux-form';
 import { FlatButton, TextField } from 'material-ui';
-import { reduxForm } from 'redux-form'
-import { addRomms } from '../../actions/room';
 
-const styles = {
-  customWidth: {
-    width: 150,
-  },
-};
+
+
 
 const renderTextField = props => (
   <div>
@@ -20,8 +15,16 @@ const renderTextField = props => (
     {...props.input}/></div>
 )
 
-const FIELDS=[];
+const numValidate = (value) =>(value && isNaN(Number(value))?'กรุณากรอกตัวเลข':undefined)
+const required=(value)=>(value?undefined:'Required')
 
+
+const styles = {
+   float       : 'none', 
+   width       : '200px',
+   marginLeft  : 'auto',
+   marginRight : 'auto'
+};
 
 class SelectForm extends Component {
   state = {
@@ -31,18 +34,21 @@ class SelectForm extends Component {
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
-    const {fields,handleSubmit}= this.props;
+    const {handleSubmit}= this.props;
      const items = [];
      const itemsInput = [];
       for (var i = 1; i < 100; i++ ) {
             items.push(<MenuItem value={i} key={i} primaryText={`${i} ชั้น`} />);
       }
-      for(var m=1; m <=this.state.value;m++){
-           itemsInput.push( <div ><Field key={m} name={m.toString()} label={`ชั้นที่ ${m}`} component={renderTextField} /></div>)
+      for(var m=0; m <this.state.value;m++){
+           itemsInput.push( <div key={m}>
+           <Field name={m.toString()} label={`ชั้นที่ ${m+1}`} component={renderTextField} validate={[required,numValidate]}/>
+           </div>)
       }
 
     return (
-      <div>
+      <div style={styles}>
+      
         <SelectField
           floatingLabelText="จำนวนชั้น"
           value={this.state.value}
@@ -52,8 +58,7 @@ class SelectForm extends Component {
             items
           }
         </SelectField>
-
-        <form onSubmit={handleSubmit}>
+     <form onSubmit={handleSubmit}>
             {
                itemsInput
             }
@@ -66,15 +71,7 @@ class SelectForm extends Component {
   }
 }
 
-SelectForm = reduxForm({
-    form: 'rooms',
-    fields: FIELDS,
-    validate: (values, props) =>
-      FIELDS.reduce((errors, field) =>
-        values[field] ? errors : { ...errors, [field]: 'Required' }, {}),
-    onSubmit:(values,dispatch)=> dispatch(addRomms(values))
-}
-)(SelectForm)
+
 
 SelectForm.propTypes={
   handleSubmit:PropTypes.func.isRequest

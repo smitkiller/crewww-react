@@ -1,11 +1,12 @@
 import { CALL_API } from 'redux-api-middleware';
-import { ROOMSCOL_ENDPOINT,ROOMS_ENDPOINT } from '../constants/endpoints';
+import { ROOMSCOL_ENDPOINT,ROOMS_ENDPOINT,ROOMSCOL_ENDPOINT_DEL } from '../constants/endpoints';
 import { browserHistory } from 'react-router';
 import {
   LOAD_ROOMSCOL_REQUEST,LOAD_ROOMSCOL_SUCCESS,LOAD_ROOMSCOL_FAILURE,
   CREATE_ROOMSCOL_REQUEST,CREATE_ROOMSCOL_SUCCESS,CREATE_ROOMSCOL_FAILURE,
   CREATE_ROOMS_REQUEST,CREATE_ROOMS_SUCCESS,CREATE_ROOMS_FAILURE,
-  DELETE_ROOMS_REQUEST,DELETE_ROOMS_SUCCESS,DELETE_ROOMS_FAILURE
+  DELETE_ROOMS_REQUEST,DELETE_ROOMS_SUCCESS,DELETE_ROOMS_FAILURE,
+  DELETE_ROOMSCOL_REQUEST,DELETE_ROOMSCOL_SUCCESS,DELETE_ROOMSCOL_FAILURE
 
 } from '../constants/actionTypes';
 
@@ -57,6 +58,14 @@ export const cleanRooms = () =>({
   }
 })
 
+export const cleanRoomsCol = () =>({
+  [CALL_API]: {
+    endpoint: ROOMSCOL_ENDPOINT_DEL,
+    method: 'DELETE',
+    types: [DELETE_ROOMSCOL_REQUEST,DELETE_ROOMSCOL_SUCCESS,DELETE_ROOMSCOL_FAILURE]
+  }
+})
+
 export const createRoomscol = (values) => (
   (dispatch) =>
     dispatch({
@@ -89,20 +98,53 @@ export const createRoomscol = (values) => (
 
 )
 
+export const updateRoomscol=(values)=>(
+   (dispatch)=>{
+            var data=[];
+            var newValue=[];
+            var total=0;
+            for(var i=0;i<values.length;i++){
+              total=Number(total)+Number(values[i]);
+            }
+
+              data = {
+                          totalLevel:values.length,
+                          levelRooms:values,
+                          totalRooms:total
+                    }
+
+              //  roomsNum(data)
+             dispatch(cleanRooms());
+             dispatch(cleanRoomsCol());
+             dispatch(createRooms(data)); 
+             dispatch(createRoomscol(data));
+             browserHistory.push(`/roomcol`); 
+             //console.log('ssssssmit',data[0])
+      }
+   
+  )
+
 export const addRomms = (values) =>(
 
   (dispatch)=>{
   var data=[];
+  var newValue=[];
   var total=0;
-  for(var i=1;i<values.length;i++){
+  for(var i=0;i<values.length;i++){
     total=Number(total)+Number(values[i]);
   }
-  //console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu',total)
-   data.push({level:{num:values.length-1},levelRooms:{rooms:values},total:{rooms:total}});
+
+    data = {
+                totalLevel:values.length,
+                levelRooms:values,
+                totalRooms:total
+          }
+
+    //  roomsNum(data)
    dispatch(cleanRooms());
    dispatch(createRooms(data)); 
    dispatch(createRoomscol(data));
-   browserHistory.push(`/roomcol`);
+   browserHistory.push(`/roomcol`); 
    //console.log('ssssssmit',data[0])
   }
 
@@ -111,13 +153,13 @@ export const addRomms = (values) =>(
 
 function roomsNum(values){
       var data = []; 
-      for(var i=1;i<=values[0].level.num;i++){        
-          for(var j=1;j<=values[0].levelRooms.rooms[i];j++){
-              var rows=(i).toString();
-              var col=(j).toString();            
+      for(var i=0;i<values.totalLevel;i++){        
+          for(var j=0;j<values.levelRooms[i];j++){
+              var rows=(i+1).toString();
+              var col=(j+1).toString();            
               var numRooms=pad(col, 3);
               var numberRoom = rows.concat(numRooms);
-              data.push({id:numberRoom,level:i});
+              data.push({id:numberRoom,level:i+1});
              
           }
 

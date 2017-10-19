@@ -1,11 +1,17 @@
 import React, { PropTypes } from 'react';
 
+const middle = {
+   float       : 'none', 
+   width       : '200px',
+   marginLeft  : 'auto',
+   marginRight : 'auto'
+};
 
 const ShowPage = ({
   page
 }) => {
   return (
-    <div className="App">
+    <div className="App" style={middle}>
   
 <article>
 

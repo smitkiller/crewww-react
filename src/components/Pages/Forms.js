@@ -1,24 +1,32 @@
 import React, { PropTypes } from 'react'
 import { Field } from 'redux-form'
-import Header from '../Header'
+
 //import { FileUpload } from 'redux-file-upload'
 import { FlatButton, TextField } from 'material-ui'
 //import ImageUpload from '../ImageUpload'
 
 const renderTextField = props => (
+  <div>
   <TextField hintText={props.label}
     floatingLabelText={props.label}
     errorText={props.meta.touched && props.meta.error}
-    {...props.input}/>
+    {...props.input}/></div>
 )
+
+const middle = {
+   float       : 'none', 
+   width       : '200px',
+   marginLeft  : 'auto',
+   marginRight : 'auto'
+};
+
 const PageForm = ({
   fields,
   handleSubmit,touched,error
 }) => {
 
   return (
-    <div className="App">
-    <Header txtTitle='New'/>
+    <div className="App" style={middle}>
     <form
       onSubmit={handleSubmit}
       className='form'>

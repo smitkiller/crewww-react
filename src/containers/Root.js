@@ -13,12 +13,12 @@ export default class Root extends Component {
     const { history} = this.props
     const store = configureStore()
 
+    
     return (
       <Provider store={store} key='provider'>
       <MuiThemeProvider muiTheme={theme}>     
           <Routes
-           history={history}
-           store={store}
+           history={history}     
           />
       </MuiThemeProvider>
        </Provider>

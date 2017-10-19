@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import { createPage } from '../../actions/page'
 import PageForm from '../../components/Pages/Forms'
-
+import Header from '../../components/Header';
 
 const FIELDS = ['title', 'content']
 
@@ -13,9 +13,12 @@ class PageFormContainer extends Component {
     const { fields, handleSubmit } = this.props
 
     return (
+      <div>
+      <Header txtTitle='New'/>
       <PageForm
         fields={fields}
         handleSubmit={handleSubmit} />
+        </div>
     )
   }
 }

@@ -14,3 +14,4 @@ export const DATAS_ENDPOINT = `${API_ROOT}/datas.json`
 export const PAGE_ENDPOINT = `${API_ROOT}/pages`
 export const ROOMSCOL_ENDPOINT = `${API_ROOT}/roomscol.json`
 export const ROOMS_ENDPOINT = `${API_ROOT}/rooms.json`
+export const ROOMSCOL_ENDPOINT_DEL = `${API_ROOT}/roomscol.json`
