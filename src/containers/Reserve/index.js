@@ -2,24 +2,25 @@ import React,{Component,PropTypes} from 'react';
 import Reserve from '../../components/Reserve';
 import {connect} from 'react-redux';
 import Header from '../../components/Header';
+import {loadRooms} from '../../actions/room';
 
 class ReserveContainer extends Component {
     
     static propTypes = {
-    	reserves:PropTypes.array.isRequired,
-    	onLoadReserves:PropTypes.func.isRequired
+    	rooms:PropTypes.array.isRequired,
+    	onLoadRooms:PropTypes.func.isRequired
     }
 
 	shouldComponentUpdate(nextProps){
-		return this.props.reserves !== nextProps.reserves;
+		return this.props.rooms !== nextProps.rooms;
 	}
 
-	onReloadReserves = () =>{
-    	this.props.onLoadReserves();
+	onReloadRooms = () =>{
+    	this.props.onLoadRooms();
     }
 
 	componentDidMount(){
-		//this.onReloadReserves();
+		this.onReloadRooms();
 	}
 
 	render(){
@@ -27,15 +28,14 @@ class ReserveContainer extends Component {
 			<div>
 				<Header txtTitle="จองห้องพัก"/>
 				<Reserve
-				  reserves={this.props.reserves}
-				  onReloadReserves={this.onReloadReserves} />
+				  rooms={this.props.rooms}/>
 			</div>
 			)
 	}
 }
 	ReserveContainer = connect(
-		(state) => ({reserves:state.reserves}),
-		//{onLoadReserves:loadReserves}
+		(state) => ({rooms:state.rooms}),
+		{onLoadRooms:loadRooms}
 
 	)(ReserveContainer)
 
