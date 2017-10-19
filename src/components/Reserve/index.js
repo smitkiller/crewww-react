@@ -1,6 +1,6 @@
 import React,{Component} from'react';
 import Paper from 'material-ui/Paper';
-
+import _ from 'lodash';
 const style = {
   height: 100,
   width: 100,//!important
@@ -94,12 +94,18 @@ var Foo = React.createElement("div", { style:{style}});
 
 class Reserve extends Component{
 	render(){
+		const {rooms} = this.props
 		return(
 
 			<div style={styleContent}> 
 				<p style={styleTriangles}></p><p style={styleTrianglesHead}></p>
 				<Paper style={styleScrope}>
-			   		{lis}
+			   		{
+			   			_.map(rooms,(val,key)=>(
+			   				console.log('dkkkkkkkkkkkkkkkkkk',val)
+
+			   				))
+			   		}
 			   	</Paper>
 			</div>                        
 											
