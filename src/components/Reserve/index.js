@@ -1,16 +1,25 @@
 import React,{Component} from'react';
 import Paper from 'material-ui/Paper';
 import _ from 'lodash';
-const style = {
-  height: 100,
-  width: 100,//!important
-  textAlign: 'center',
-  display: 'inline-block',
-  'margin-left': 5,
- // 'vertical-align': 'middle',
-  
-  backgroundColor: '#FF9800'
-};
+
+const styles = {
+	mid:{
+		   float       : 'none', 
+		   width 	   : '100%',
+		   marginLeft  : 'auto',
+		   marginRight : 'auto',
+		},
+	display_block:{
+		  height: 100,
+		  width: 100,//!important
+		  textAlign: 'center',
+		  display: 'inline-block',
+		  'margin-left': 5,
+		  'margin-top':5,
+		  backgroundColor: '#FF9800'
+	}	
+}
+
 
 const styleTriangles = {
 	width: 'auto',
@@ -75,18 +84,6 @@ var Pagination = React.createClass({
 
 */
 
-var lis = [];
-var rows=5;
-var col=5;
-var Foo = React.createElement("div", { style:{style}});
-
-	for(var i=0;i<rows;i++){
-		lis.push(Foo);
-		for (var j=0; j<col; j++) {
-				lis.push( <Paper style={style} zDepth={1} />);
-		}
-
-	}
 
 /*const listItem = lis.map((lis)=>
 		<div>{lis}</div>
@@ -94,18 +91,41 @@ var Foo = React.createElement("div", { style:{style}});
 
 class Reserve extends Component{
 	render(){
-		const {rooms} = this.props
+		const {rooms,roomscol} = this.props
+		var info_data = [];
+		var total=[];
+		var num_rooms=[];
+		_.map(roomscol,(roomcol)=>total={level:roomcol.totalLevel,rooms:roomcol.totalRooms});
+		_.map(rooms,(val)=>num_rooms=val);
+
+		for(var m=0;m<total.level;m++){
+			info_data.push([]);
+		}
+		for(var i=0;i<total.level;i++){
+			for(var j=0;j<total.rooms;j++){
+				if(num_rooms[j].level===(i+1)){
+					info_data[i].push(num_rooms[j].id)
+				}
+			}
+		}
+	info_data.sort((a,key)=>console.log('xxxxxxxxxxxxxxxxxxxxxxx',key));
+	
 		return(
 
 			<div style={styleContent}> 
 				<p style={styleTriangles}></p><p style={styleTrianglesHead}></p>
 				<Paper style={styleScrope}>
-			   		{
-			   			_.map(rooms,(val,key)=>(
-			   				console.log('dkkkkkkkkkkkkkkkkkk',val)
-
-			   				))
-			   		}
+				{
+					info_data.map((datas)=>(
+						<div style={styles.mid}>
+						{
+							datas.map((data,key)=>(
+									<Paper key={key} style={styles.display_block} zDepth={1} >{data}</Paper>
+								))
+						}
+						</div>
+					))
+				}
 			   	</Paper>
 			</div>                        
 											

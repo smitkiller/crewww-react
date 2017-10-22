@@ -173,6 +173,10 @@ function roomsNum(values){
           }
 
       }
+         /*   var lev=[];
+      for(var m=0;m<values.totalLevel;m++){
+        lev.push([]);
+      } */
       
       return data;
 }

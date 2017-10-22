@@ -28,13 +28,14 @@ class ReserveContainer extends Component {
 			<div>
 				<Header txtTitle="จองห้องพัก"/>
 				<Reserve
-				  rooms={this.props.rooms}/>
+				  rooms={this.props.rooms}
+				  roomscol={this.props.roomscol}/>
 			</div>
 			)
 	}
 }
 	ReserveContainer = connect(
-		(state) => ({rooms:state.rooms}),
+		(state) => ({rooms:state.rooms,roomscol:state.roomscol}),
 		{onLoadRooms:loadRooms}
 
 	)(ReserveContainer)
