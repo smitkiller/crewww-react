@@ -1,5 +1,8 @@
 import { CALL_API } from 'redux-api-middleware';
-import { ROOMSCOL_ENDPOINT,ROOMS_ENDPOINT,ROOMSCOL_ENDPOINT_DEL } from '../constants/endpoints';
+import { ROOMSCOL_ENDPOINT,
+  ROOMS_ENDPOINT,
+  ROOMSCOL_ENDPOINT_DEL,
+  ROOMCOL_ENDPOINT } from '../constants/endpoints';
 import { browserHistory } from 'react-router';
 import {
   LOAD_ROOMSCOL_REQUEST,LOAD_ROOMSCOL_SUCCESS,LOAD_ROOMSCOL_FAILURE,
@@ -7,10 +10,19 @@ import {
   CREATE_ROOMS_REQUEST,CREATE_ROOMS_SUCCESS,CREATE_ROOMS_FAILURE,
   DELETE_ROOMS_REQUEST,DELETE_ROOMS_SUCCESS,DELETE_ROOMS_FAILURE,
   DELETE_ROOMSCOL_REQUEST,DELETE_ROOMSCOL_SUCCESS,DELETE_ROOMSCOL_FAILURE,
-  LOAD_ROOMS_REQUEST,LOAD_ROOMS_SUCCESS,LOAD_ROOMS_FAILURE
+  LOAD_ROOMS_REQUEST,LOAD_ROOMS_SUCCESS,LOAD_ROOMS_FAILURE,
+  LOAD_ROOMCOL_REQUEST,LOAD_ROOMCOL_SUCCESS,LOAD_ROOMCOL_FAILURE
 
 } from '../constants/actionTypes';
 
+
+export const loadRoomcol = (id) => ({
+  [CALL_API]: {
+    endpoint: `${ROOMCOL_ENDPOINT}/${id}/.json`,
+    method: 'GET',
+    types: [LOAD_ROOMCOL_REQUEST, LOAD_ROOMCOL_SUCCESS, LOAD_ROOMCOL_FAILURE]
+  }
+})
 
 export const loadRoomscol = () => ({
   [CALL_API]: {
@@ -149,7 +161,7 @@ export const addRomms = (values) =>(
                 totalRooms:total
           }
 
-    //  roomsNum(data)
+      roomsNum(data)
    dispatch(cleanRooms());
    dispatch(createRooms(data)); 
    dispatch(createRoomscol(data));

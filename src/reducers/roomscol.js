@@ -1,5 +1,5 @@
 import {
-  LOAD_ROOMSCOL_SUCCESS
+  LOAD_ROOMSCOL_SUCCESS,LOAD_ROOMCOL_SUCCESS
 } from '../constants/actionTypes'
 import _ from 'lodash';
 
@@ -9,9 +9,16 @@ export default (state = initialState, action) => {
   switch(action.type) {
     case LOAD_ROOMSCOL_SUCCESS:
       return action.payload
+    case LOAD_ROOMCOL_SUCCESS:
+      return [action.payload]
     default:
       return state
   }
 }
 
-
+export const getRoomcolById = (state, id) => (
+ // console.log('gooooooodddd',id)
+  //state.pages.find((page,key) => key === +id) || { title: '', content: '' }
+ _.find(state.roomscol,(roomcol,key)=> key === id) 
+ // state.pages.find((page,key) => key === +id) || {title: '' , content: '' }
+)

@@ -1,6 +1,9 @@
 import React,{Component} from'react';
 import Paper from 'material-ui/Paper';
 import _ from 'lodash';
+import RaisedButton from 'material-ui/RaisedButton';
+
+
 
 const styles = {
 	mid:{
@@ -17,38 +20,46 @@ const styles = {
 		  'margin-left': 5,
 		  'margin-top':5,
 		  backgroundColor: '#FF9800'
-	}	
+	},
+	raised_button	:{
+		margin: 12,
+		height:80,
+	},
+	scrope :{
+		margin:5,
+
+	},
+	triangles : {
+		width: 'auto',
+		height: 0,
+		'text-indent': '-9999px',
+		'border-right': '80px solid transparent',
+		'border-bottom': '80px solid rgb(83, 165, 82)',//'80px solid #f09',
+		'border-left':'80px solid transparent',
+		//'border-right-width':'1000px'
+	},
+	triangles_head : {
+		width: 0,
+		height: 0,
+		'text-indent': '-9999px',
+		'border-right': '80px solid transparent',
+		'border-bottom': '80px solid rgb(101, 18, 38)',
+		'border-left':'80px solid transparent',
+		'margin-top': '-96px'
+	},
+	content_reserve :{
+		'margin-left': '50px',
+		'margin-right': '50px',
+		'margin-top': '20px'
+	}
 }
 
 
-const styleTriangles = {
-	width: 'auto',
-	height: 0,
-	'text-indent': '-9999px',
-	'border-right': '80px solid transparent',
-	'border-bottom': '80px solid rgb(182, 50, 87)',//'80px solid #f09',
-	'border-left':'80px solid transparent',
-	//'border-right-width':'1000px'
 
-};
-const styleTrianglesHead = {
-	width: 0,
-	height: 0,
-	'text-indent': '-9999px',
-	'border-right': '80px solid transparent',
-	'border-bottom': '80px solid rgb(101, 18, 38)',
-	'border-left':'80px solid transparent',
-	'margin-top': '-96px'
-}
-const styleScrope = {
-	margin:-10,
-};
 
-const styleContent ={
-	'margin-left': '50px',
-	'margin-right': '50px',
-	'margin-top': '50px'
-}
+
+
+
 /*
 const getObjects = () => {
   const objs = []
@@ -98,34 +109,45 @@ class Reserve extends Component{
 		_.map(roomscol,(roomcol)=>total={level:roomcol.totalLevel,rooms:roomcol.totalRooms});
 		_.map(rooms,(val)=>num_rooms=val);
 
+	/*	for(var a=0;a<total.level;a++){
+
+					test.push([{'dd':a}:[]]);
+		}*/
+
 		for(var m=0;m<total.level;m++){
 			info_data.push([]);
 		}
+	
+
 		for(var i=0;i<total.level;i++){
 			for(var j=0;j<total.rooms;j++){
 				if(num_rooms[j].level===(i+1)){
 					info_data[i].push(num_rooms[j].id)
-				}
+				}	
 			}
+			
 		}
-	info_data.sort((a,key)=>console.log('xxxxxxxxxxxxxxxxxxxxxxx',key));
+		info_data.sort(function(a,b){
+			return b[0]-a[0]
+		})
+//console.log('xxxxxxxxxxxxxxxxxxxxxxxx',info_data)
 	
 		return(
 
-			<div style={styleContent}> 
-				<p style={styleTriangles}></p><p style={styleTrianglesHead}></p>
-				<Paper style={styleScrope}>
-				{
-					info_data.map((datas)=>(
-						<div style={styles.mid}>
-						{
-							datas.map((data,key)=>(
-									<Paper key={key} style={styles.display_block} zDepth={1} >{data}</Paper>
-								))
-						}
-						</div>
-					))
-				}
+			<div style={styles.content_reserve}> 
+			<p style={styles.triangles}></p><p style={styles.triangles_head}></p>
+			<Paper style={styles.scrope}>
+			{
+				info_data.map((datas,inx)=>(
+					<div style={styles.mid}>
+					{
+						datas.map((data,key)=>(	
+							<RaisedButton key={key}  label={data} primary={true} style={styles.raised_button} />
+						))
+					}
+					</div>
+				))
+			}
 			   	</Paper>
 			</div>                        
 											

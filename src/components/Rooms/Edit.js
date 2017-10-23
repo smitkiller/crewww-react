@@ -32,23 +32,21 @@ const required=(value)=>(value?undefined:'Required')
 
   class EditFormCol extends Component {
 
-    state={
-          value:1
+    state = {
+      value:1
+    };
+
+    componentWillMount() {
+       this.levelTotal();
       }
-      componentDidMOunt(){
-        this.levelTotal();
-      }
-    componentWillMount(){
-        this.levelTotal();
-      }
+
     handleChange = (event, index, value) => this.setState({value});
     levelTotal = () =>(
-            this.props.roomcol.map((val)=>this.setState({value:val.totalLevel}))
+            _.map(this.props.roomscol,(val)=>this.setState({value:val.totalLevel}))
         )
   
         render(){
           const { handleSubmit} = this.props;
-  
           const items = [];
           const itemsInput = [];
             for (var i = 1; i < 100; i++ ) {
@@ -87,9 +85,7 @@ const required=(value)=>(value?undefined:'Required')
       }
 }
 
-EditFormCol.propTypes = {
-  handleSubmit:PropTypes.func
-} 
+
 
 EditFormCol = reduxForm(
   {
