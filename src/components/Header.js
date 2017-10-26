@@ -4,7 +4,7 @@ import Drawer from 'material-ui/Drawer';
 //import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import { Link} from 'react-router';
-import logo from './img/logo2.png';
+import logo from '../img/logo2.png';
 import {logoutUser} from '../actions/login';
 //import { firebaseAuth } from '../constants/configAuth';
 import { connect } from 'react-redux';

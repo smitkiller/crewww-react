@@ -1,4 +1,4 @@
-import React,{Component} from'react';
+import React,{Component,PropTypes} from'react';
 import Paper from 'material-ui/Paper';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -17,8 +17,8 @@ const styles = {
 		  width: 100,//!important
 		  textAlign: 'center',
 		  display: 'inline-block',
-		  'margin-left': 5,
-		  'margin-top':5,
+		  marginLeft: 5,
+		  marginTop:5,
 		  backgroundColor: '#FF9800'
 	},
 	raised_button	:{
@@ -32,25 +32,28 @@ const styles = {
 	triangles : {
 		width: 'auto',
 		height: 0,
-		'text-indent': '-9999px',
-		'border-right': '80px solid transparent',
-		'border-bottom': '80px solid rgb(83, 165, 82)',//'80px solid #f09',
-		'border-left':'80px solid transparent',
+		textIndent: '-9999px',
+		borderRight: '80px solid transparent',
+		borderBottom: '80px solid rgb(83, 165, 82)',//'80px solid #f09',
+		borderLeft:'80px solid transparent',
 		//'border-right-width':'1000px'
 	},
 	triangles_head : {
 		width: 0,
 		height: 0,
-		'text-indent': '-9999px',
-		'border-right': '80px solid transparent',
-		'border-bottom': '80px solid rgb(101, 18, 38)',
-		'border-left':'80px solid transparent',
-		'margin-top': '-96px'
+		textIndent: '-9999px',
+		borderRight: '80px solid transparent',
+		borderBottom: '80px solid rgb(101, 18, 38)',
+		borderLeft:'80px solid transparent',
+		marginTop: '-96px'
 	},
 	content_reserve :{
-		'margin-left': '50px',
-		'margin-right': '50px',
-		'margin-top': '20px'
+		marginLeft: 15,
+		marginRight: 15,
+		marginTop: 5
+	},
+	rm_style:{
+		backgroundColor:'#3F51B5'
 	}
 }
 
@@ -139,10 +142,10 @@ class Reserve extends Component{
 			<Paper style={styles.scrope}>
 			{
 				info_data.map((datas,inx)=>(
-					<div style={styles.mid}>
+					<div key={inx} style={styles.mid}>
 					{
 						datas.map((data,key)=>(	
-							<RaisedButton key={key}  label={data} primary={true} style={styles.raised_button} />
+							<RaisedButton key={key}  label={data} backgroundColor="#E91E63" style={styles.raised_button} />
 						))
 					}
 					</div>
@@ -154,5 +157,6 @@ class Reserve extends Component{
 			)
 	}
 }
+
 
 export default Reserve;

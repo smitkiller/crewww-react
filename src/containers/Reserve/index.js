@@ -7,7 +7,6 @@ import {loadRooms} from '../../actions/room';
 class ReserveContainer extends Component {
     
     static propTypes = {
-    	rooms:PropTypes.array.isRequired,
     	onLoadRooms:PropTypes.func.isRequired
     }
 

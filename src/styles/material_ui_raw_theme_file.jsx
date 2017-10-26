@@ -12,6 +12,7 @@ const rawBaseTheme = {
     accent1Color: Colors.pinkA200,
     accent2Color: Colors.grey100,
     accent3Color: Colors.grey500,
+    secondary1Color:'#3F51B5',
     textColor: Colors.darkBlack,
     alternateTextColor: Colors.white,
     canvasColor: Colors.white,
