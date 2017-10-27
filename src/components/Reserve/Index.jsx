@@ -2,7 +2,7 @@ import React,{Component,PropTypes} from'react';
 import Paper from 'material-ui/Paper';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
+import ActionAccount from 'material-ui/svg-icons/action/account-box';
 import { Link} from 'react-router';
 
 const styles = {
@@ -123,7 +123,7 @@ class Reserve extends Component{
 					label={info_data[x][y].rid} 
 					backgroundColor="#E91E63" 
 					style={styles.raised_button} 
-					icon={<ActionAndroid />} />
+					icon={<ActionAccount />} />
 				)
 			}
 		}

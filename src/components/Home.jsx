@@ -1,7 +1,6 @@
 import React,{PropTypes} from 'react'
 //import PropTypes from 'prop-types';
 import { Link } from 'react-router'
-import Paper from 'material-ui/Paper'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import themeSite from '../img/old.jpg';
@@ -17,8 +16,7 @@ const style = {
 const Home = ({
 
 }) => (
-<div style={{marginTop:'20'}}>
- <Card style={{'width':'80%','margin':'0 auto'}}>
+ <Card style={{'width':'80%','margin':'0 auto',marginTop:20}}>
     <CardHeader
       title="URL Avatar"
       subtitle="Subtitle"
@@ -41,13 +39,6 @@ const Home = ({
       <FlatButton label="Action2" />
     </CardActions>
   </Card>
-  </div>
 )
 
-/*
-Homes.propTypes = {
-  datas: PropTypes.string.isRequired,
-  title: PropTypes.object.isRequired
-}
-*/
 export default Home;

@@ -1,8 +1,8 @@
 import React,{Component,Proptypes} from 'react';
-import Header from '../Header';
 import { FlatButton, TextField } from 'material-ui';
 import { Field } from 'redux-form';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import { reduxForm } from 'redux-form';
 
 const renderTextField = (props) => (
       <div>
@@ -64,3 +64,9 @@ class ReserveForm extends Component{
    }
 }
 
+ReserveForm = reduxForm(
+  {
+    form: 'ReserveForm',
+})(ReserveForm)
+
+export default ReserveForm;

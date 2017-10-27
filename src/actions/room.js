@@ -135,7 +135,8 @@ export const updateRoomscol=(values)=>(
                     }
 
               //  roomsNum(data)
-            dispatch(cleanRooms());
+            var test = dispatch(cleanRooms());
+            console.log('kkkkkkkkkkkkkkkkkkkkkkkksss',test.PromiseValue);
             dispatch(createRooms(data)); 
             dispatch(cleanRoomsCol());
             dispatch(createRoomscol(data));

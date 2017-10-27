@@ -1,28 +1,31 @@
 import React,{Component} from 'react';
 import FlatButton from 'material-ui/FlatButton';
-//import DeleteIcon from 'material-ui/svg-icons/action/delete-forever'
+import ActionTouch from 'material-ui/svg-icons/action/touch-app'
 import AddIcon from 'material-ui/svg-icons/image/add-to-photos';
-import EditIcon from 'material-ui/svg-icons/image/edit';
+import DeleteIcon from 'material-ui/svg-icons/action/delete-forever'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import themeSite from '../../img/old.jpg';
 import logo from '../../img/logoCrewww.png';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import DialogReserve from '../Dialog/DialogReserve';
 
 const styles = {
   headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
+    fontSize: 16,
+    paddingTop: 5,
+    marginBottom: 5,
+    textAlign: 'center'
   },
   tabItemContainer:{
-  	backgroundColor: '#00838F'
+  	backgroundColor: '#00BCD4'
   }
 };
 
-
+const state = {
+    showCheckboxes: false
+  };
 
 class ReserveList extends Component{
   
@@ -41,7 +44,7 @@ class ReserveList extends Component{
 
   render() {
     return (
-    	<div style={{marginTop:'20'}}>
+    	<div style={{marginTop:20}}>
       <Tabs 
       tabItemContainerStyle={styles.tabItemContainer}
       style={{'width':'80%','margin':'0 auto'}}
@@ -50,39 +53,62 @@ class ReserveList extends Component{
       >
         <Tab label="รายการจองห้องพัก" value="a">
           <div>
-            <h2 style={styles.headline}>Controllable Tab A</h2>
-            <p>
-              Tabs are also controllable if you want to programmatically pass them their values.
-              This allows for more functionality in Tabs such as not
-              having any Tab selected or assigning them different values.
-            </p>
-          </div>
+          <Table>
+           <TableHeader
+              displaySelectAll={state.showCheckboxes}
+              adjustForCheckbox={state.showCheckboxes}
+           >
+              <TableRow>
+                <TableHeaderColumn style={styles.headline} colSpan="4"  >
+                  รายการจองห้องพัก
+                </TableHeaderColumn>
+              </TableRow>
+             <TableRow>
+             <TableHeaderColumn>วันที่</TableHeaderColumn>
+              <TableHeaderColumn>ชื่อ-นามสกุล</TableHeaderColumn>
+              <TableHeaderColumn>เบอร์ติดต่อ</TableHeaderColumn>
+              <TableHeaderColumn><DialogReserve/></TableHeaderColumn>
+            </TableRow>
+            </TableHeader>
+            <TableBody
+                displayRowCheckbox={state.showCheckboxes}
+            >
+                  <TableRow >
+                    <TableRowColumn></TableRowColumn>
+                    <TableRowColumn></TableRowColumn>
+                    <TableRowColumn></TableRowColumn>
+                    <TableRowColumn>
+                      <FlatButton title="ยกเลิก" icon={<DeleteIcon/>} />
+                    </TableRowColumn>
+                  </TableRow>
+            </TableBody>
+          </Table>
+        </div>
         </Tab>
         <Tab label="รายละเอียดห้องพัก" value="b">
-          <div>
-           <Card style={{'width':'100%','margin':'0 auto'}}>
-    <CardHeader
-      title="URL Avatar"
-      subtitle="Subtitle"
-      avatar={logo}
-    />
-    <CardMedia
-      overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-    >
-      <img src={themeSite} alt="" />
-    </CardMedia>
-    <CardTitle title="Card title" subtitle="Card subtitle" />
-    <CardText>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-    </CardText>
-    <CardActions>
-      <FlatButton label="Action1" />
-      <FlatButton label="Action2" />
-    </CardActions>
-  </Card>
+          <div style={{marginBottom:20}}>
+              <Card style={{'width':'100%','margin':'0 auto'}}>
+                <CardHeader
+                  title="URL Avatar"
+                  subtitle="Subtitle"
+                  avatar={logo}
+                />
+                <CardMedia
+                  overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+                >
+                  <img src={themeSite} alt="" />
+                </CardMedia>
+                <CardTitle title="Card title" subtitle="Card subtitle" />
+                <CardText>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+                  Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+                  Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                </CardText>
+                <CardActions>
+                  <FlatButton title="จอง" icon={<ActionTouch/>} />
+                </CardActions>
+              </Card>
           </div>
         </Tab>
       </Tabs>
