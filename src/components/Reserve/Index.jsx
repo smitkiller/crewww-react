@@ -3,7 +3,7 @@ import Paper from 'material-ui/Paper';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
-
+import { Link} from 'react-router';
 
 const styles = {
 	mid:{
@@ -108,11 +108,13 @@ class Reserve extends Component{
 		for(var y=0;y<info_data[x].length;y++){
 			if(info_data[x][y].uid===''){
 		display.push(
-					<RaisedButton 
+			<Link to={{ pathname: `/reserve/list/${info_data[x][y].rid}` }}>			
+				<RaisedButton 
 					key={info_data[x][y].rid}
 					label={info_data[x][y].rid} 
 					backgroundColor="#E91E63" 
 					style={styles.raised_button} />
+			</Link>
 				)
 			}else{
 				display.push(

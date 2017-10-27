@@ -14,11 +14,10 @@ import _ from 'lodash';
 const style = {
   margin: 12,
 };
-
-const Pages = ({
-  pages,
-  onReloadPages,
-  onRemove
+const state = {
+    showCheckboxes: false
+  };
+const Pages = ({pages,onReloadPages,onRemove
 }) => (
   <div>
     <FlatButton
@@ -28,7 +27,10 @@ const Pages = ({
     <Link to={{ pathname: '/pages/new' }}><FlatButton icon={<AddIcon/>} style={style} /></Link>
     <hr />
     <Table>
-     <TableHeader>
+     <TableHeader
+      displaySelectAll={state.showCheckboxes}
+      adjustForCheckbox={state.showCheckboxes}
+     >
        <TableRow>
        <TableHeaderColumn>ID</TableHeaderColumn>
         <TableHeaderColumn>Title</TableHeaderColumn>
@@ -37,7 +39,9 @@ const Pages = ({
          <TableHeaderColumn></TableHeaderColumn>
       </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody
+        displayRowCheckbox={state.showCheckboxes}
+      >
         {
           _.map(pages,(page,key) => (
             <TableRow key={key}>

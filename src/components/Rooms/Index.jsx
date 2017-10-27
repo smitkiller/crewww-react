@@ -12,6 +12,10 @@ const style = {
   margin: 12,
 };
 
+const state = {
+    showCheckboxes: false
+  };
+
 const Roomscol = ({roomscol}) => (
   <div>
   {/*roomscol
@@ -23,7 +27,10 @@ const Roomscol = ({roomscol}) => (
      <Link to={{ pathname: '/roomcol/new' }}><FlatButton icon={<AddIcon/>} style={style} /></Link>
     <hr />
     <Table>
-     <TableHeader>
+     <TableHeader
+      displaySelectAll={state.showCheckboxes}
+      adjustForCheckbox={state.showCheckboxes}
+     >
        <TableRow>
        <TableHeaderColumn>จำนวนชั้น</TableHeaderColumn>
         <TableHeaderColumn>จำนวนห้องแต่ละชั้น</TableHeaderColumn>
@@ -32,7 +39,9 @@ const Roomscol = ({roomscol}) => (
          <TableHeaderColumn></TableHeaderColumn>
       </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody
+          displayRowCheckbox={state.showCheckboxes}
+      >
         {
 
           _.map(roomscol,(value,key)=>(
