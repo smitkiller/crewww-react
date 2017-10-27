@@ -1,7 +1,6 @@
 import React, { Component ,PropTypes } from 'react';
 import { connect } from 'react-redux';
-import EditFormCol from '../../components/Rooms/Edit';
-import Header from '../../components/Header';
+import {EditFormCol,Header} from '../../components';
 import _ from 'lodash';
 
 

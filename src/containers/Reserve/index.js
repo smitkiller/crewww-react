@@ -1,12 +1,11 @@
 import React,{Component,PropTypes} from 'react';
-import Reserve from '../../components/Reserve';
 import {connect} from 'react-redux';
-import Header from '../../components/Header';
-import {loadRooms} from '../../actions/room';
+import {Header,Reserve} from '../../components';
+import {loadRooms} from '../../actions';
 
 class ReserveContainer extends Component {
-    
-    static propTypes = {
+   
+  static propTypes = {
     	onLoadRooms:PropTypes.func.isRequired
     }
 

@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { loadUsers,deleteUser } from '../../actions/user';
-import Users from '../../components/Users';
-import Header from '../../components/Header';
+import {Users,Header} from '../../components';
 
 class UsersContainer extends Component {
   static propTypes = {

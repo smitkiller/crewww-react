@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadRoomscol,addRomms } from '../../actions/room';
-import Roomscol from '../../components/Rooms/index';
-import Header from '../../components/Header';
+import { loadRoomscol,addRomms } from '../../actions';
+import {Roomscol,Header} from '../../components';
 import { reduxForm } from 'redux-form'
 
 //const FIELDS = ['rows', 'col'];

@@ -135,10 +135,12 @@ export const updateRoomscol=(values)=>(
                     }
 
               //  roomsNum(data)
-             dispatch(cleanRooms());
-             dispatch(cleanRoomsCol());
-             dispatch(createRooms(data)); 
-             dispatch(createRoomscol(data));
+            dispatch(cleanRooms());
+            dispatch(createRooms(data)); 
+            dispatch(cleanRoomsCol());
+            dispatch(createRoomscol(data));
+            
+            
              browserHistory.push(`/roomcol`); 
              //console.log('ssssssmit',data[0])
       }
@@ -161,7 +163,7 @@ export const addRomms = (values) =>(
                 totalRooms:total
           }
 
-      roomsNum(data)
+    //  roomsNum(data)
    dispatch(cleanRooms());
    dispatch(createRooms(data)); 
    dispatch(createRoomscol(data));

@@ -2,7 +2,7 @@ import React,{Component,PropTypes} from'react';
 import Paper from 'material-ui/Paper';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import ActionAndroid from 'material-ui/svg-icons/action/android';
 
 
 const styles = {
@@ -59,57 +59,21 @@ const styles = {
 
 
 
-
-
-
-
-/*
-const getObjects = () => {
-  const objs = []
-  for (var i=0; i < objects.length; i++) {
-    objs.push(<ObjectRow obj={objects[i]} key={i}>)
-  }
-
-  return objs;
-}
-
-###########################################
-
-var lis = [];
-
-for (var i=0; i<10; i++) {
-    lis.push(<li><a href="#">{i + 1}</a></li>);
-}
-
-var Pagination = React.createClass({
-    render: function(){
-        return(
-            <div class="text-center">
-                <ul class="pagination">
-
-                    <li><a href="#">«</a></li>
-                    {lis}
-                    <li><a href="#">»</a></li>
-                </ul>
-            </div>
-        );
-    }
-});
-
-*/
-
-
-/*const listItem = lis.map((lis)=>
-		<div>{lis}</div>
-	);*/
-
 class Reserve extends Component{
 	render(){
 		const {rooms,roomscol} = this.props
 		var info_data = [];
 		var total=[];
+		var uid;
 		var num_rooms=[];
-		_.map(roomscol,(roomcol)=>total={level:roomcol.totalLevel,rooms:roomcol.totalRooms});
+		var status_room;
+		var display = [];
+		_.map(roomscol,(roomcol)=>
+			total={
+				rm_level:roomcol.totalLevel,
+				rm_total:roomcol.totalRooms,
+				rm_rows_col:roomcol.levelRooms
+			});
 		_.map(rooms,(val)=>num_rooms=val);
 
 	/*	for(var a=0;a<total.level;a++){
@@ -117,23 +81,52 @@ class Reserve extends Component{
 					test.push([{'dd':a}:[]]);
 		}*/
 
-		for(var m=0;m<total.level;m++){
+		for(var m=0;m<total.rm_level;m++){
 			info_data.push([]);
+
 		}
 	
 
-		for(var i=0;i<total.level;i++){
-			for(var j=0;j<total.rooms;j++){
+		for(var i=0;i<total.rm_level;i++){
+			for(var c=0;c<total.rm_total[i];c++){
+				info_data[i].push([]);
+			}
+			for(var j=0;j<total.rm_total;j++){
 				if(num_rooms[j].level===(i+1)){
-					info_data[i].push(num_rooms[j].id)
+					num_rooms[j].user_id?uid=num_rooms[j].user_id:uid='';
+					info_data[i].push({rid:num_rooms[j].id,uid:uid});
 				}	
 			}
 			
 		}
 		info_data.sort(function(a,b){
-			return b[0]-a[0]
+			return b[0].rid-a[0].rid
 		})
-//console.log('xxxxxxxxxxxxxxxxxxxxxxxx',info_data)
+
+	for(var x=0;x<info_data.length;x++){
+		display.push(<div></div>)
+		for(var y=0;y<info_data[x].length;y++){
+			if(info_data[x][y].uid===''){
+		display.push(
+					<RaisedButton 
+					key={info_data[x][y].rid}
+					label={info_data[x][y].rid} 
+					backgroundColor="#E91E63" 
+					style={styles.raised_button} />
+				)
+			}else{
+				display.push(
+					<RaisedButton 
+					key={info_data[x][y].rid}
+					label={info_data[x][y].rid} 
+					backgroundColor="#E91E63" 
+					style={styles.raised_button} 
+					icon={<ActionAndroid />} />
+				)
+			}
+		}
+
+	}
 	
 		return(
 
@@ -141,15 +134,7 @@ class Reserve extends Component{
 			<p style={styles.triangles}></p><p style={styles.triangles_head}></p>
 			<Paper style={styles.scrope}>
 			{
-				info_data.map((datas,inx)=>(
-					<div key={inx} style={styles.mid}>
-					{
-						datas.map((data,key)=>(	
-							<RaisedButton key={key}  label={data} backgroundColor="#E91E63" style={styles.raised_button} />
-						))
-					}
-					</div>
-				))
+				display
 			}
 			   	</Paper>
 			</div>                        

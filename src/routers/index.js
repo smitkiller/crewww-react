@@ -1,22 +1,24 @@
 import React,{Component} from 'react';
-import { syncHistoryWithStore } from 'react-router-redux';
 import { Router,Route,IndexRoute } from 'react-router';
-import App from '../components/App';
-import Home from '../containers/Home';
-import About from '../components/About';
-import Pages from '../containers/Pages/index';
-import NewPage from '../containers/Pages/New';
-import ShowPage from '../containers/Pages/Show';
-import EditPage from '../containers/Pages/Edit';
-import Login from '../containers/Login';
-import Reserve from '../containers/Reserve';
-import ReserveList from '../containers/Reserve/ReserveList';
-import Users from '../containers/Users';
-import RoomsCol from '../containers/Rooms';
-import NewRooms from '../containers/Rooms/NewRooms';
-import EditRoomscol from '../containers/Rooms/EditFormCol';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import {
+        App,
+        About } from '../components';
+import { 
+        Pages,
+        NewPage,
+        ShowPage,
+        EditPage,
+        Login,
+        Reserve,
+        ReserveList,
+        Users,
+        RoomsCol,
+        NewRooms,
+        EditRoomscol,
+        Home } from '../containers';
+
 
 function  privateAuth(authed,nextState,replace) {
 

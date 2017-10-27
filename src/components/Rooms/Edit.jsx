@@ -6,7 +6,7 @@ import EditIcon from 'material-ui/svg-icons/image/edit';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import { reduxForm } from 'redux-form';
-import { updateRoomscol } from '../../actions/room';
+import { updateRoomscol } from '../../actions';
 import _ from 'lodash';
 
 const FIELDS = [];

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadPages,deletePage } from '../../actions/page';
-import Pages from '../../components/Pages/index';
-import Header from '../../components/Header';
+import { loadPages,deletePage } from '../../actions';
+import {Pages,Header} from '../../components';
 
 class PagesContainer extends Component {
   static propTypes = {
