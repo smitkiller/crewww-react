@@ -10,14 +10,17 @@ import theme from '../styles/material_ui_raw_theme_file'
 export default class Root extends Component {
   render() {
 
-    const { history} = this.props
-    const store = configureStore()
+
+    const { history, initialState } = this.props;
+    
+    const store = configureStore(history, initialState);
 
     
     return (
       <Provider store={store} key='provider'>
       <MuiThemeProvider muiTheme={theme}>     
           <Routes
+           store={store}
            history={history}     
           />
       </MuiThemeProvider>

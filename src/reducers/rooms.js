@@ -1,9 +1,9 @@
 import {
   LOAD_ROOMS_SUCCESS
 } from '../constants/actionTypes'
-import _ from 'lodash';
 
-const initialState = []
+
+const initialState = [];
 
 export default (state = initialState, action) => {
   switch(action.type) {

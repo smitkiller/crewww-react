@@ -22,6 +22,9 @@ export default (history, initialState) => {
     compose(applyMiddleware(...middlewares),autoRehydrate())
   )
 
+
+persistStore(store)
+
     if (module.hot) {
     module.hot.accept('../reducers', () => {
       System.import('../reducers').then(nextRootReducer =>
@@ -30,7 +33,7 @@ export default (history, initialState) => {
     })
   }
 
-persistStore(store)
+
 
 
   return store

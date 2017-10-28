@@ -17,7 +17,7 @@ class ReserveContainer extends Component {
     	this.props.onLoadRooms();
     }
 
-	componentDidMount(){
+	componentWillMount(){
 		this.onReloadRooms();
 	}
 

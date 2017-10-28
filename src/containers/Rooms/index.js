@@ -24,7 +24,7 @@ class RoomscolContainer extends Component {
   }
 
 
-  componentDidMount() {
+  componentWillMount () {
     this.onReloadRoomscol()
   }
 

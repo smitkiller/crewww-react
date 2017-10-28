@@ -43,7 +43,7 @@ function  privateLogin(authed) {
 class Routes extends Component {
 
   render() {
-  const {history} = this.props
+  const {store,history} = this.props
     return (
       <div>
          <Router history={history}>       

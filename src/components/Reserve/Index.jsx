@@ -60,8 +60,11 @@ const styles = {
 
 
 class Reserve extends Component{
+
 	render(){
+
 		const {rooms,roomscol} = this.props
+		
 		var info_data = [];
 		var total=[];
 		var uid;
@@ -75,6 +78,13 @@ class Reserve extends Component{
 				rm_rows_col:roomcol.levelRooms
 			});
 		_.map(rooms,(val)=>num_rooms=val);
+		for(var l=0;l<num_rooms.length;l++){
+			num_rooms[l]={
+				id:num_rooms[l].id,
+				level:num_rooms[l].level,
+				user_id:num_rooms[l].user_id
+			}
+		}
 
 	/*	for(var a=0;a<total.level;a++){
 
@@ -86,7 +96,6 @@ class Reserve extends Component{
 
 		}
 	
-
 		for(var i=0;i<total.rm_level;i++){
 			for(var c=0;c<total.rm_total[i];c++){
 				info_data[i].push([]);
@@ -104,13 +113,13 @@ class Reserve extends Component{
 		})
 
 	for(var x=0;x<info_data.length;x++){
-		display.push(<div></div>)
+		display.push(<div key={x}></div>)
 		for(var y=0;y<info_data[x].length;y++){
 			if(info_data[x][y].uid===''){
 		display.push(
 			<Link to={{ pathname: `/reserve/list/${info_data[x][y].rid}` }}>			
 				<RaisedButton 
-					key={info_data[x][y].rid}
+					
 					label={info_data[x][y].rid} 
 					backgroundColor="#E91E63" 
 					style={styles.raised_button} />
@@ -119,7 +128,7 @@ class Reserve extends Component{
 			}else{
 				display.push(
 					<RaisedButton 
-					key={info_data[x][y].rid}
+					
 					label={info_data[x][y].rid} 
 					backgroundColor="#E91E63" 
 					style={styles.raised_button} 

@@ -10,5 +10,9 @@ import roomscol from './roomscol';
 export default combineReducers({
   form: formReducer,
   routing: routerReducer,
-  pages,datas,login,rooms,roomscol
+  pages,
+  datas,
+  login,
+  rooms,
+  roomscol
 })
