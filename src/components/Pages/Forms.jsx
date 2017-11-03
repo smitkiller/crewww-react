@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Field } from 'redux-form'
-
+import ProfilePage from './ProfilePage';
 //import { FileUpload } from 'redux-file-upload'
 import { FlatButton, TextField } from 'material-ui'
 //import ImageUpload from '../ImageUpload'
@@ -43,6 +43,7 @@ const PageForm = ({
        component={renderTextField} />
 
       </div>
+      <ProfilePage/>
       <FlatButton type='submit' label="Submit" />
     </form>
     </div>

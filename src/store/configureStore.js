@@ -22,7 +22,6 @@ export default (history, initialState) => {
     compose(applyMiddleware(...middlewares),autoRehydrate())
   )
 
-
 persistStore(store)
 
     if (module.hot) {

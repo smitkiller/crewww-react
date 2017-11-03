@@ -48,7 +48,7 @@ class SelectForm extends Component {
 
     return (
       <div style={styles}>
-      
+      <form onSubmit={handleSubmit}>
         <SelectField
           floatingLabelText="จำนวนชั้น"
           value={this.state.value}
@@ -58,7 +58,7 @@ class SelectForm extends Component {
             items
           }
         </SelectField>
-     <form onSubmit={handleSubmit}>
+     
             {
                itemsInput
             }
@@ -74,7 +74,7 @@ class SelectForm extends Component {
 
 
 SelectForm.propTypes={
-  handleSubmit:PropTypes.func.isRequest
+  handleSubmit:PropTypes.func
 }
 
 export default SelectForm;

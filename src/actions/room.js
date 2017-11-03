@@ -20,7 +20,9 @@ export const loadRoomcol = (id) => ({
   [CALL_API]: {
     endpoint: `${ROOMCOL_ENDPOINT}/${id}/.json`,
     method: 'GET',
-    types: [LOAD_ROOMCOL_REQUEST, LOAD_ROOMCOL_SUCCESS, LOAD_ROOMCOL_FAILURE]
+    types: [LOAD_ROOMCOL_REQUEST, 
+            LOAD_ROOMCOL_SUCCESS, 
+            LOAD_ROOMCOL_FAILURE]
   }
 })
 
@@ -28,7 +30,9 @@ export const loadRoomscol = () => ({
   [CALL_API]: {
     endpoint: ROOMSCOL_ENDPOINT,
     method: 'GET',
-    types: [LOAD_ROOMSCOL_REQUEST, LOAD_ROOMSCOL_SUCCESS, LOAD_ROOMSCOL_FAILURE]
+    types: [LOAD_ROOMSCOL_REQUEST, 
+            LOAD_ROOMSCOL_SUCCESS,
+            LOAD_ROOMSCOL_FAILURE]
   }
 })
 
@@ -52,30 +56,33 @@ const createRooms = (values) =>(
         method: 'POST',
         body: JSON.stringify(roomsNum(values)),
         types: [
-          CREATE_ROOMS_REQUEST,
-          {
-            type: CREATE_ROOMS_SUCCESS,
-            payload: (_action, _state, res) => {
-              return res.json().then((rooms) => {
-                 //console.log('dddddddddddddddddddddddddddddddd')
-                 
-                return rooms
-              })
-            }
-          },
-          CREATE_ROOMS_FAILURE
-        ]
+                CREATE_ROOMS_REQUEST,
+                 {
+                    type: CREATE_ROOMS_SUCCESS,
+                    payload: (_action, _state, res) => {
+                      return res.json().then((rooms) => {
+                        dispatch(loadRooms());
+                        return rooms
+                      })
+                    }
+                  },
+                CREATE_ROOMS_FAILURE
+                ]
       }
     }
   )
 
 )
 
-export const cleanRooms = () =>({
+export const cleanRooms = (data) =>({
    [CALL_API]: {
     endpoint: ROOMS_ENDPOINT,
     method: 'DELETE',
-    types: [DELETE_ROOMS_REQUEST,DELETE_ROOMS_SUCCESS,DELETE_ROOMS_FAILURE]
+    types: [
+            DELETE_ROOMS_REQUEST,
+            DELETE_ROOMS_SUCCESS,
+            DELETE_ROOMS_FAILURE
+            ]
   }
 })
 
@@ -83,7 +90,11 @@ export const cleanRoomsCol = () =>({
   [CALL_API]: {
     endpoint: ROOMSCOL_ENDPOINT_DEL,
     method: 'DELETE',
-    types: [DELETE_ROOMSCOL_REQUEST,DELETE_ROOMSCOL_SUCCESS,DELETE_ROOMSCOL_FAILURE]
+    types: [
+            DELETE_ROOMSCOL_REQUEST,
+            DELETE_ROOMSCOL_SUCCESS,
+            DELETE_ROOMSCOL_FAILURE
+            ]
   }
 })
 
@@ -103,10 +114,8 @@ export const createRoomscol = (values) => (
           {
             type: CREATE_ROOMSCOL_SUCCESS,
             payload: (_action, _state, res) => {
-              return res.json().then((roomscol) => {                               
-               // dispatch(push(`/pages/${page.id}`))
+              return res.json().then((roomscol) => {
                 dispatch(loadRoomscol());
-                
                 return roomscol
               })
             }
@@ -119,30 +128,28 @@ export const createRoomscol = (values) => (
 
 )
 
-export const updateRoomscol=(values)=>(
+export const updateRoomscol=(values,level)=>(
    (dispatch)=>{
             var data=[];
             var newValue=[];
             var total=0;
-            for(var i=0;i<values.length;i++){
+            for(var i=0;i<level;i++){
               total=Number(total)+Number(values[i]);
             }
 
               data = {
-                          totalLevel:values.length,
+                          totalLevel:level,
                           levelRooms:values,
                           totalRooms:total
                     }
 
               //  roomsNum(data)
-            var test = dispatch(cleanRooms());
-            console.log('kkkkkkkkkkkkkkkkkkkkkkkksss',test.PromiseValue);
-            dispatch(createRooms(data)); 
-            dispatch(cleanRoomsCol());
-            dispatch(createRoomscol(data));
-            
-            
-             browserHistory.push(`/roomcol`); 
+            //  console.log('mmmmmmmmmmmm',values)
+          dispatch(cleanRooms());
+          dispatch(cleanRoomsCol());
+          dispatch(createRooms(data));     
+          dispatch(createRoomscol(data));
+          browserHistory.push(`/roomcol`); 
              //console.log('ssssssmit',data[0])
       }
    
@@ -166,6 +173,7 @@ export const addRomms = (values) =>(
 
     //  roomsNum(data)
    dispatch(cleanRooms());
+   dispatch(cleanRoomsCol());
    dispatch(createRooms(data)); 
    dispatch(createRoomscol(data));
    browserHistory.push(`/roomcol`); 

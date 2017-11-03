@@ -1,13 +1,20 @@
 import {
-  LOAD_ROOMSCOL_SUCCESS,LOAD_ROOMCOL_SUCCESS
+  LOAD_ROOMSCOL_SUCCESS,
+  LOAD_ROOMCOL_SUCCESS,
+  DELETE_ROOMSCOL_SUCCESS,
+  CREATE_ROOMSCOL_SUCCESS
 } from '../constants/actionTypes'
 import _ from 'lodash';
 
 const initialState = [];
 
-export default (state = initialState, action) => {
+export default (state=initialState, action) => {
   switch(action.type) {
     case LOAD_ROOMSCOL_SUCCESS:
+      return action.payload
+    case DELETE_ROOMSCOL_SUCCESS:
+      return action.payload
+    case CREATE_ROOMSCOL_SUCCESS:
       return action.payload
     case LOAD_ROOMCOL_SUCCESS:
       return [action.payload]

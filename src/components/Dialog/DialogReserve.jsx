@@ -44,7 +44,8 @@ class DialogReserve extends Component{
       title="จองห้องพัก"
       actions={actions}
       modal={true}
-      open={this.state.open}>
+      open={this.state.open}
+      autoScrollBodyContent={true}>
       <ReserveForm/>
       </Dialog>
       </div>

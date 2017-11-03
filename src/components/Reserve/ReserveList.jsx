@@ -106,7 +106,7 @@ class ReserveList extends Component{
                   Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
                 </CardText>
                 <CardActions>
-                  <FlatButton title="จอง" icon={<ActionTouch/>} />
+                  <DialogReserve/>
                 </CardActions>
               </Card>
           </div>

@@ -9,7 +9,7 @@ import { reduxForm } from 'redux-form';
 import { updateRoomscol } from '../../actions';
 import _ from 'lodash';
 
-const FIELDS = [];
+
 const styles = {
    float       : 'none', 
    width       : '200px',
@@ -17,34 +17,47 @@ const styles = {
    marginRight : 'auto'
 };
 
+const renderSelectField = ({ input,label,children }) => (
+    <SelectField
+      { ...input }
+      floatingLabelText={ label }
+      floatingLabelFixed={true}
+      value="1">
+    </SelectField>
+)
 
 const renderTextField = props => (
   <div>
   <TextField hintText={props.label}
     floatingLabelText={props.label}
     errorText={props.meta.touched && props.meta.error}
-    {...props.input}/>
-  </div>
+    {...props.input}/></div>
 )
+
 
 const numValidate = (value) =>(value && isNaN(Number(value))?'กรุณากรอกตัวเลข':undefined)
 const required=(value)=>(value?undefined:'Required')
 
   class EditFormCol extends Component {
 
-    state = {
-      value:1
-    };
+      state={
+        value:this.props.totalLevel
+      } 
 
-    componentWillMount() {
-       this.levelTotal();
+   /*   componentWillReceiveProps(){
+        this.levelTotal();
+      }*/
+      componentWillMount(){
+        this.levelTotal();
       }
+
 
     handleChange = (event, index, value) => this.setState({value});
     levelTotal = () =>(
-            _.map(this.props.roomscol,(val)=>this.setState({value:val.totalLevel}))
+            this.setState({value:this.props.totalLevel})
         )
-  
+
+
         render(){
           const { handleSubmit} = this.props;
           const items = [];
@@ -58,10 +71,9 @@ const required=(value)=>(value?undefined:'Required')
                  component={renderTextField} validate={[required,numValidate]} />)
             }
 
-
-          return (
+         return(
                 <div style={styles}>
-                   <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit((values,dispatch)=>dispatch(updateRoomscol(values, this.state.value)))}>     
                   <SelectField
                     floatingLabelText="จำนวนชั้น"
                     value={this.state.value}
@@ -70,55 +82,50 @@ const required=(value)=>(value?undefined:'Required')
                     {
                       items
                     }
-                  </SelectField>
+                  </SelectField> 
 
-              
                       {
                          itemsInput
                       }
 
-                      <FlatButton type='submit' label="Submit" />
+                      <FlatButton type="submit" label="Submit" />
                    </form>
 
                 </div>
-         );
+         )
       }
 }
 
 
 
-EditFormCol = reduxForm(
-  {
-    form: 'EditFormCol',
-    fields: FIELDS,
-    enableReinitialize : true,  // สำคัญ ทำให้ ownProps found
-    onSubmit:(values,dispatch)=> dispatch(updateRoomscol(values))
-})(EditFormCol)
-
-
-function mapStateToProps(state,ownProps){
+function mapInitialValues(state,ownProps){
   var data=[];
-  var datas=[];
   var values=[];
-    datas={
-      id:ownProps.id
-    }
+  //values.push(ownProps.totalLevel.toString())
+  console.log('dddddddddddddddddd',ownProps)
+    _.map(state.roomscol,(val,key)=>
+       val.levelRooms.map((level,inx)=>
+        values[inx]=level
+        )
 
-      data=  _.map(state.roomscol,(val)=>val.levelRooms)
-      for(var i=0;i<data.length;i++){
-            values=data[i];  
-      }
-  
+      )
 
-   //console.log('dddddddddddddddddddddsssss',values)
+//console.log('mmmmmmmmmmmmmmm',values)
   return{
     initialValues:values
   }
 }
-EditFormCol = connect(mapStateToProps
-)(EditFormCol)
 
+EditFormCol = reduxForm(
+  {
+    form: 'EditFormCol',
+    //enableReinitialize : true,  // สำคัญ ทำให้ ownProps found
+    //onSubmit:(values,dispatch)=> console.log('valllllllllllll',values)
+})(EditFormCol)
+EditFormCol = connect(mapInitialValues)(EditFormCol)
 
-
+EditFormCol.propsTypes={
+  handleSubmit:PropTypes.func
+}
 
 export default EditFormCol;

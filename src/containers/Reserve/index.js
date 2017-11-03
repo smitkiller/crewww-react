@@ -25,15 +25,25 @@ class ReserveContainer extends Component {
 		return(
 			<div>
 				<Header txtTitle="จองห้องพัก"/>
-				<Reserve
+			{!this.props.rooms || !this.props.roomscol 
+				?<div><h1>Loading...</h1></div>
+				:<Reserve
 				  rooms={this.props.rooms}
 				  roomscol={this.props.roomscol}/>
+				}
 			</div>
 			)
+
 	}
 }
+function mapStateToProps(state){
+	return{
+		rooms:state.rooms,
+		roomscol:state.roomscol
+	};
+}
 	ReserveContainer = connect(
-		(state) => ({rooms:state.rooms,roomscol:state.roomscol}),
+		mapStateToProps,
 		{onLoadRooms:loadRooms}
 
 	)(ReserveContainer)

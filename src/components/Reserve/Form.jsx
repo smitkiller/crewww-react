@@ -30,6 +30,23 @@ class ReserveForm extends Component{
    	return(
 
    		<form onSubmit={handleSubmit} className='form' >
+      <div>
+        ประเภทการจอง
+      </div>
+         <div>
+            <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+               <RadioButton
+                 value="0"
+                 label="รายวัน"
+                 style={styles.radioButton}
+               />
+                <RadioButton
+                 value="1"
+                 label="รายเดือน"
+                 style={styles.radioButton}
+               />
+            </RadioButtonGroup>
+         </div>
    		<div>
    			<Field name="firstname" label="ชื่อ" component={renderTextField} />
    		</div>
@@ -40,7 +57,7 @@ class ReserveForm extends Component{
    			<Field name="tel" label="เบอร์โทรศัพท์" component={renderTextField} />
    		</div>
    		<div>
-   			<Field name="email" label="ำีเมลล์" component={renderTextField} />
+   			<Field name="email" label="email" component={renderTextField} />
    		</div>
    		<div>
    			ประเภทการเข้าพัก
