@@ -1,9 +1,9 @@
 /* File TEST */
-import React,{ Component } from 'react';
+import React,{ Component,PropTypes} from 'react';
 import {Dialog,FlatButton} from 'material-ui';
 import ActionTouch from 'material-ui/svg-icons/action/touch-app'
 import ReserveForm from '../Reserve/Form';
-
+import StepForm from '../Reserve/StepForm';
 
 
 class DialogReserve extends Component{
@@ -28,13 +28,6 @@ class DialogReserve extends Component{
       label="Cancel"
       primary={true}
       onTouchTap={this.handleClose}/>,
-
-      <FlatButton
-      type="submit"
-      label="Submit"
-      primary={true}
-      onTouchTap={handleSubmit}
-      />
     ]
 
     return(
@@ -46,7 +39,7 @@ class DialogReserve extends Component{
       modal={true}
       open={this.state.open}
       autoScrollBodyContent={true}>
-      <ReserveForm/>
+      <StepForm/>
       </Dialog>
       </div>
     )

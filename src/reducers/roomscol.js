@@ -12,12 +12,16 @@ export default (state=initialState, action) => {
   switch(action.type) {
     case LOAD_ROOMSCOL_SUCCESS:
       return action.payload
+      break;
     case DELETE_ROOMSCOL_SUCCESS:
       return action.payload
+      break;
     case CREATE_ROOMSCOL_SUCCESS:
       return action.payload
+      break;
     case LOAD_ROOMCOL_SUCCESS:
       return [action.payload]
+      break;
     default:
       return state
   }

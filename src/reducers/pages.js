@@ -14,9 +14,11 @@ export default (state = initialState, action) => {
      // _ / lodash แปลงข้อมูลเป็น array
       //return _.map(action.payload)
       return action.payload
+      break;
     case LOAD_PAGE_SUCCESS:
       //return [_.map(action.payload)]
       return [action.payload]
+      break;
     default:
       return state
   }

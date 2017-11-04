@@ -17,18 +17,21 @@ export default (state = initialState, action) => {
           'userName':action.name,
           'statusText': null
       });
+      break;
     case LOGIN_USER_FAILURE:
       return Object.assign({}, state, {
           'authed': false,
           'userName': null,
           'statusText': 'Invalid username/password.'
       });
+      break;
      case LOGOUT_USER_SUCCESS:
          return Object.assign({}, state, {
           'authed': false,
           'userName': null,
           'statusText': null
       });
+         break;
     default:
       return state
   }

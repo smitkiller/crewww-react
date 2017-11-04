@@ -208,3 +208,7 @@ function pad(str, max) {
 return str.length < max ? pad("0" + str, max) : str;
 }
  
+
+export const addReserve = (values)=>(
+    console.log('values...............',values)
+  )
