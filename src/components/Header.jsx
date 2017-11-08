@@ -47,7 +47,9 @@ class Header extends Component {
           openSecondary={false}
           open={this.state.open}>
           <AppBar title={txtTitle} onLeftIconButtonTouchTap={this.handleToggle}/>
-          <Link style={{textDecoration:'none'}} to={'/home'}><MenuItem>Home</MenuItem></Link>
+          <Link style={{textDecoration:'none'}} to={'/'}><MenuItem>Home</MenuItem></Link>
+         {this.props.authed
+          ?<div>
           <Link style={{textDecoration:'none'}} to={'/app'} ><MenuItem>App</MenuItem></Link>
           <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>Pages</MenuItem></Link>
           <Link style={{textDecoration:'none'}} to={'/reserve'}><MenuItem>จอง</MenuItem></Link>
@@ -65,9 +67,9 @@ class Header extends Component {
           <Link style={{textDecoration:'none'}} to={'/pages'}><MenuItem>ติดต่อ</MenuItem></Link>
           <Link style={{textDecoration:'none'}} to={'/users'}><MenuItem primaryText="จัดการผู้ใช้ระบบ" /></Link>
           <Link style={{textDecoration:'none'}} to={'/roomcol'}><MenuItem primaryText="จัดการจำนวนห้องพัก" /></Link>
-          {this.props.authed
-                    ? <Link style={{textDecoration:'none'}} onClick={this.onLogout}><MenuItem>Logout</MenuItem></Link>
-                    : <Link style={{textDecoration:'none'}} to={'/login'}><MenuItem>Login</MenuItem></Link>}
+          <Link style={{textDecoration:'none'}} onClick={this.onLogout}><MenuItem>Logout</MenuItem></Link>
+          </div>
+        : <Link style={{textDecoration:'none'}} to={'/login'}><MenuItem>Login</MenuItem></Link>}
           {/*<Link style={{textDecoration:'none'}} to={'/about'}><MenuItem>About</MenuItem></Link>*/}
           </Drawer>
           </div>

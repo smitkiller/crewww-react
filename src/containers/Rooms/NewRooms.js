@@ -1,7 +1,7 @@
 import React, {Component,PropTypes} from 'react';
 import {SelectForm,Header} from '../../components';
 import { reduxForm } from 'redux-form'
-import { addRomms } from '../../actions/room';
+import { addRomms } from '../../actions';
 
 
 

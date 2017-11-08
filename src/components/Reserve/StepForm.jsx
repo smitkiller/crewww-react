@@ -9,6 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {RadioButton} from 'material-ui/RadioButton';
 import { reduxForm,Field } from 'redux-form';
 import { FlatButton } from 'material-ui';
+import MenuItem from 'material-ui/MenuItem';
 import {
   AutoComplete,
   Checkbox,
@@ -28,7 +29,7 @@ const email = value =>
   (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
     ? 'Invalid email'
     : undefined);
-const checkDate = value => (value > 15 ? 'Are you mad?' : undefined);
+const numValidate = (value) =>(value && isNaN(Number(value))?'กรุณากรอกตัวเลข':undefined)
 
 class StepForm extends React.Component {
   constructor(props){
@@ -46,6 +47,7 @@ class StepForm extends React.Component {
       types:"0",
       minDate: minDate,
       maxDate: maxDate,
+      maxStart:maxDate,
       minEnd:minDate,
     };
   }
@@ -56,6 +58,11 @@ class StepForm extends React.Component {
     });
   }
 
+  handleDayEnd=(event,date)=>{
+    this.setState({
+      maxStart:date,
+    })
+  }
  handleDay=()=>(
           this.setState({types:"0"})
         )
@@ -91,7 +98,7 @@ class StepForm extends React.Component {
           />
         )}
         <RaisedButton
-          label="Next"
+          label={stepIndex ===1 ?'Finish':'Next'}
           disableTouchRipple={true}
           disableFocusRipple={true}
           primary={true}
@@ -117,7 +124,7 @@ class StepForm extends React.Component {
         >
           <Step>
             <StepButton onClick={() => this.setState({stepIndex: 0})}>
-              Select campaign settings
+              เลือกประเภทห้องพัก
             </StepButton>
             <StepContent>
               <div>
@@ -131,33 +138,87 @@ class StepForm extends React.Component {
           </Step>
           <Step>
             <StepButton onClick={() => this.setState({stepIndex: 1})}>
-              Create an ad group
+              กรอกข้อมูลส่วนตัว
             </StepButton>
             <StepContent>
+        {this.state.types==='0'
+          ?<div>
                 <div>
-                    <div>วันที่เข้าพัก</div>
                       <Field
                         name="dateCheckIn"
                         component={DatePicker}
                         format={null}
+                        floatingLabelText="วันที่เข้าพัก"
                         hintText="วันที่เข้าพัก"
                         validate={required}
                         minDate={this.state.minDate}
-                        maxDate={this.state.maxDate}
+                        maxDate={this.state.maxStart}
                         onChange={this.handleDayStart}
                       />
                 </div>
-                 <div>
-                    <div>วันที่ออก</div>
+                  <div>
                       <Field
                         name="dateCheckOut"
                         component={DatePicker}
+                        floatingLabelText="วันที่ออก"
                         format={null}
                         hintText="วันที่ออก"
                         validate={required}
                         minDate={this.state.minEnd}
                         maxDate={this.state.maxDate}
+                        onChange={this.handleDayEnd}
                       />
+                </div>
+              </div>
+             :
+             <div>               
+                  <Field
+                    name="duration"
+                    component={SelectField}
+                    hintText="ระยะเวลา"
+                    floatingLabelText="ระยะเวลา"
+                    validate={required}
+                  >
+                    <MenuItem value="1" primaryText="1 เดือน" />
+                    <MenuItem value="2" primaryText="2 เดือน" />
+                    <MenuItem value="3" primaryText="3 เดือน" />
+                    <MenuItem value="more" primaryText="ไม่มีกำหนด" />
+                  </Field>
+             </div>
+            }
+                <div>
+                    <Field 
+                      name="firstname" 
+                      component={TextField}
+                      hintText="ชื่อ"
+                      floatingLabelText="ชื่อ"
+                      validate={required}
+                       />
+                </div>
+                <div>
+                    <Field 
+                      name="lastname" 
+                      component={TextField}
+                      hintText="นามสกุล"
+                      floatingLabelText="นามสกุล"
+                      validate={required}
+                       />
+                </div>
+                <div>
+                เพศ
+                  <Field name="sex" component={RadioButtonGroup}>
+                    <RadioButton value="male" label="ชาย" />
+                    <RadioButton value="female" label="หญิง" />
+                  </Field>
+                </div>
+                 <div>
+                    <Field 
+                      name="tel" 
+                      component={TextField}
+                      hintText="เบอร์โทร"
+                      floatingLabelText="เบอร์โทร"
+                      validate={[required,numValidate]}
+                       />
                 </div>
               {this.renderStepActions(1)}
             </StepContent>
@@ -174,6 +235,7 @@ StepForm = reduxForm(
     form: 'StepForm',
     initialValues: {
       typeReserve: '0',
+      sex:'male',
     }
 })(StepForm)
 

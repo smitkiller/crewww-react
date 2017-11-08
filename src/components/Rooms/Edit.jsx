@@ -102,7 +102,7 @@ function mapInitialValues(state,ownProps){
   var data=[];
   var values=[];
   //values.push(ownProps.totalLevel.toString())
-  console.log('dddddddddddddddddd',ownProps)
+  //console.log('dddddddddddddddddd',ownProps)
     _.map(state.roomscol,(val,key)=>
        val.levelRooms.map((level,inx)=>
         values[inx]=level

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import Header from './Header'
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 class App extends Component {
   render() {
     return (
-
       <div className="App">
-      <Header txtTitle="App" privacy="true"/>
+      <Header txtTitle="App" />
         <p className="App-intro">
           xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </p>
@@ -14,7 +15,5 @@ class App extends Component {
     );
   }
 }
-
-
 
 export default App;

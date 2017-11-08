@@ -20,7 +20,6 @@ export default class Root extends Component {
       <Provider store={store} key='provider'>
       <MuiThemeProvider muiTheme={theme}>     
           <Routes
-           store={store}
            history={history}     
           />
       </MuiThemeProvider>

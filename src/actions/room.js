@@ -1,8 +1,7 @@
 import { CALL_API } from 'redux-api-middleware';
 import { ROOMSCOL_ENDPOINT,
-  ROOMS_ENDPOINT,
-  ROOMSCOL_ENDPOINT_DEL,
-  ROOMCOL_ENDPOINT } from '../constants/endpoints';
+         ROOMS_ENDPOINT,
+         ROOMCOL_ENDPOINT } from '../constants/endpoints';
 import { browserHistory } from 'react-router';
 import {
   LOAD_ROOMSCOL_REQUEST,LOAD_ROOMSCOL_SUCCESS,LOAD_ROOMSCOL_FAILURE,
@@ -30,7 +29,7 @@ export const loadRoomscol = () => ({
   [CALL_API]: {
     endpoint: ROOMSCOL_ENDPOINT,
     method: 'GET',
-    types: [LOAD_ROOMSCOL_REQUEST, 
+    types: [LOAD_ROOMSCOL_REQUEST,          
             LOAD_ROOMSCOL_SUCCESS,
             LOAD_ROOMSCOL_FAILURE]
   }
@@ -40,7 +39,9 @@ export const loadRooms = () => ({
   [CALL_API]:{
     endpoint:ROOMS_ENDPOINT,
     method:'GET',
-    types:[LOAD_ROOMS_REQUEST,LOAD_ROOMS_SUCCESS,LOAD_ROOMS_FAILURE]
+    types:[LOAD_ROOMS_REQUEST,
+           LOAD_ROOMS_SUCCESS,
+           LOAD_ROOMS_FAILURE]
   }
 })
 
@@ -60,10 +61,7 @@ const createRooms = (values) =>(
                  {
                     type: CREATE_ROOMS_SUCCESS,
                     payload: (_action, _state, res) => {
-                      return res.json().then((rooms) => {
-                        dispatch(loadRooms());
-                        return rooms
-                      })
+                      dispatch(loadRooms());
                     }
                   },
                 CREATE_ROOMS_FAILURE
@@ -74,31 +72,41 @@ const createRooms = (values) =>(
 
 )
 
-export const cleanRooms = (data) =>({
-   [CALL_API]: {
+export const cleanRooms = () =>({
+   [CALL_API]:{
     endpoint: ROOMS_ENDPOINT,
     method: 'DELETE',
     types: [
             DELETE_ROOMS_REQUEST,
-            DELETE_ROOMS_SUCCESS,
+            {
+              type:DELETE_ROOMS_SUCCESS,
+              payload: {
+                status:true
+              }
+            },
             DELETE_ROOMS_FAILURE
             ]
-  }
+    }
 })
 
 export const cleanRoomsCol = () =>({
   [CALL_API]: {
-    endpoint: ROOMSCOL_ENDPOINT_DEL,
+    endpoint: ROOMSCOL_ENDPOINT,
     method: 'DELETE',
     types: [
             DELETE_ROOMSCOL_REQUEST,
-            DELETE_ROOMSCOL_SUCCESS,
+             {
+              type:DELETE_ROOMSCOL_SUCCESS,
+              payload: {
+                status:true
+              }
+            },
             DELETE_ROOMSCOL_FAILURE
             ]
   }
 })
 
-export const createRoomscol = (values) => (
+const createRoomscol = (values) => (
   (dispatch) =>
     dispatch({
       [CALL_API]: {
@@ -114,10 +122,7 @@ export const createRoomscol = (values) => (
           {
             type: CREATE_ROOMSCOL_SUCCESS,
             payload: (_action, _state, res) => {
-              return res.json().then((roomscol) => {
-                dispatch(loadRoomscol());
-                return roomscol
-              })
+              dispatch(loadRoomscol());
             }
           },
           CREATE_ROOMSCOL_FAILURE
@@ -130,6 +135,8 @@ export const createRoomscol = (values) => (
 
 export const updateRoomscol=(values,level)=>(
    (dispatch)=>{
+            var statusRooms;
+            var statusRoomsCol;
             var data=[];
             var newValue=[];
             var total=0;
@@ -144,20 +151,56 @@ export const updateRoomscol=(values,level)=>(
                     }
 
               //  roomsNum(data)
-            //  console.log('mmmmmmmmmmmm',values)
-          dispatch(cleanRooms());
-          dispatch(cleanRoomsCol());
-          dispatch(createRooms(data));     
-          dispatch(createRoomscol(data));
-          browserHistory.push(`/roomcol`); 
+            statusRooms=dispatch(manageRooms(data))
+           if(statusRooms===true){
+             statusRoomsCol=dispatch(manageRoomsCol(data))
+                if(statusRoomsCol===true){
+                  browserHistory.push(`/roomcol`); 
+                }else{
+                    console.log('error manageRoomsCol')
+                }
+           }else{
+              console.log('error manageRooms')
+           }
              //console.log('ssssssmit',data[0])
       }
    
   )
 
-export const addRomms = (values) =>(
-
+const manageRooms = (data) =>(
   (dispatch)=>{
+      dispatch(cleanRooms())
+      .then(function(result){
+          if(result.payload.status===true){
+            dispatch(createRooms(data));
+          }        
+        })
+       .catch((error)=>{
+        console.log('error',error);
+      })
+
+    }
+    
+  )
+
+const manageRoomsCol = (data) =>(
+    (dispatch)=>{
+      dispatch(cleanRoomsCol())
+      .then(function(result){
+          if(result.payload.status===true){
+            dispatch(createRoomscol(data));           
+            }        
+      })
+      .catch((error)=>{
+            console.log('error',error)
+      })
+    }
+  )
+
+export const addRomms = (values) =>(
+  (dispatch)=>{
+  var statusRooms;
+  var statusRoomsCol;
   var data=[];
   var newValue=[];
   var total=0;
@@ -172,12 +215,9 @@ export const addRomms = (values) =>(
           }
 
     //  roomsNum(data)
-   dispatch(cleanRooms());
-   dispatch(cleanRoomsCol());
-   dispatch(createRooms(data)); 
-   dispatch(createRoomscol(data));
-   browserHistory.push(`/roomcol`); 
-   //console.log('ssssssmit',data[0])
+   dispatch(manageRooms(data))
+   dispatch(manageRoomsCol(data))
+   browserHistory.push('/roomcol')
   }
 
 )

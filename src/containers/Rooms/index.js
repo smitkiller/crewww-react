@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadRoomscol,addRomms } from '../../actions';
+import { loadRoomscol } from '../../actions';
 import {Roomscol,Header} from '../../components';
-import { reduxForm } from 'redux-form'
+
 
 //const FIELDS = ['rows', 'col'];
 
@@ -24,7 +24,7 @@ class RoomscolContainer extends Component {
   }
 
 
-  componentWillMount () {
+  componentDidMount(){
     this.onReloadRoomscol()
   }
 

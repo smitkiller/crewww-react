@@ -1,4 +1,5 @@
 import { login,logout } from '../Auth/auth';
+import { browserHistory } from 'react-router';
 import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
@@ -13,7 +14,10 @@ export function loginUser(values){
     dispatch(loginRequest());
     login(values.email,values.password)
     .then(()=>{
-      dispatch(loginSuccess(values.email));
+      dispatch(loginSuccess(values.email))
+      .then(function(res){
+          browserHistory.push('/app')
+      })
       //dispatch(pushState(null, '/app'));
     })
       .catch((error)=>{
@@ -27,8 +31,10 @@ export function logoutUser(){
     dispatch(logoutRequest());
     logout()
     .then(()=>{
-      dispatch(logoutSuccess());
-      //dispatch(pushState(null, '/app'));
+      dispatch(logoutSuccess())
+      .then(function(res){
+          browserHistory.push('/')
+      })
     })
       .catch((error)=>{
         dispatch(logoutFailure());

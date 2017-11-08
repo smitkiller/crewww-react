@@ -4,7 +4,8 @@ import {Dialog,FlatButton} from 'material-ui';
 import ActionTouch from 'material-ui/svg-icons/action/touch-app'
 import ReserveForm from '../Reserve/Form';
 import StepForm from '../Reserve/StepForm';
-
+import Clear from 'material-ui/svg-icons/content/clear'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 class DialogReserve extends Component{
   state={
@@ -25,8 +26,7 @@ class DialogReserve extends Component{
     const { handleSubmit} = this.props
     const actions= [
       <FlatButton
-      label="Cancel"
-      primary={true}
+      icon={<Clear/>}
       onTouchTap={this.handleClose}/>,
     ]
 
