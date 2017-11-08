@@ -30,7 +30,6 @@ class Header extends Component {
   }
 
 
-
   render() {
     const { txtTitle } = this.props
     return (
@@ -70,7 +69,7 @@ class Header extends Component {
           <Link style={{textDecoration:'none'}} onClick={this.onLogout}><MenuItem>Logout</MenuItem></Link>
           </div>
         : <Link style={{textDecoration:'none'}} to={'/login'}><MenuItem>Login</MenuItem></Link>}
-          {/*<Link style={{textDecoration:'none'}} to={'/about'}><MenuItem>About</MenuItem></Link>*/}
+          <Link style={{textDecoration:'none'}} to={'/about'}><MenuItem>About</MenuItem></Link>
           </Drawer>
           </div>
       </header>

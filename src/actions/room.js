@@ -151,17 +151,9 @@ export const updateRoomscol=(values,level)=>(
                     }
 
               //  roomsNum(data)
-            statusRooms=dispatch(manageRooms(data))
-           if(statusRooms===true){
-             statusRoomsCol=dispatch(manageRoomsCol(data))
-                if(statusRoomsCol===true){
-                  browserHistory.push(`/roomcol`); 
-                }else{
-                    console.log('error manageRoomsCol')
-                }
-           }else{
-              console.log('error manageRooms')
-           }
+               dispatch(manageRooms(data))
+               dispatch(manageRoomsCol(data))
+               browserHistory.push('/roomcol')
              //console.log('ssssssmit',data[0])
       }
    

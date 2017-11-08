@@ -18,24 +18,11 @@ import {
         RoomsCol,
         NewRooms,
         EditRoomscol,
+        CheckAuthed,
         Home } from '../containers';
 
 
-
- function privateAuth(authed,nextState,replace){
-    if(!authed){
-         replace({
-            pathname: '/',
-            state: { nextPathname: nextState.location.pathname }
-          })
-    }
- }
-
-//onEnter={(nextState,replace)=>{privateAuth(authed,nextState,replace)}}
-
-
 class Routes extends Component {
-
   render() {
   const {history,authed} = this.props
 
@@ -44,39 +31,39 @@ class Routes extends Component {
          <Router history={history}>       
           <Route path="/" exact component={Home} />
 
-          <Route path="about" component={About}/>
+          <Route path="about"   component={About}/>
           
-        
-              <Route path="app" component={App}  />
-              <Route path="reserve" >
-                  <IndexRoute component={Reserve} />
-                  <Route path="list" >
-                              <Route path=':id' component={ReserveList} />
-                  </Route>
+        <Route>
+              <Route path="app" component={CheckAuthed(App)} />
 
+              <Route path="reserve" >
+                  <IndexRoute component={CheckAuthed(Reserve)} />
+                  <Route path="list" >
+                     <Route path=':id' component={CheckAuthed(ReserveList)} />
+                  </Route>
               </Route>
               
-              <Route path="users" component={Users}/>
+              <Route path="users" component={CheckAuthed(Users)}/>
+
               <Route path="roomcol" >
-                  <IndexRoute component={RoomsCol} />
-                  <Route path="new" component={NewRooms}/>
+                  <IndexRoute component={CheckAuthed(RoomsCol)} />
+                  <Route path="new" component={CheckAuthed(NewRooms)}/>
                   <Route path="edit" >
-                              <Route path=':id' component={EditRoomscol} />
+                      <Route path=':id' component={CheckAuthed(EditRoomscol)} />
                   </Route>
+              </Route>              
 
-              </Route>
-              <Route path="login" component={Login} />
               <Route path='pages' >
-                <IndexRoute component={Pages} />
-                <Route path='new'
-                       component={NewPage} />
-                <Route path=':id'
-                       component={ShowPage} />
+                <IndexRoute component={CheckAuthed(Pages)} />
+                <Route path='new'component={CheckAuthed(NewPage)} />
+                <Route path=':id'component={CheckAuthed(ShowPage)} />
                <Route path='edit'>
-                      <Route path=':id' component={EditPage} />
+                      <Route path=':id' component={CheckAuthed(EditPage)} />
                 </Route>
-
-          </Route> 
+             </Route> 
+          </Route>
+          
+          <Route path="login" component={Login} />
           <Route path='*' component={NotFound} />     
           </Router>
       </div>
