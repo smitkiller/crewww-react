@@ -1,7 +1,8 @@
 import { CALL_API } from 'redux-api-middleware';
 import { ROOMSCOL_ENDPOINT,
          ROOMS_ENDPOINT,
-         ROOMCOL_ENDPOINT } from '../constants/endpoints';
+         ROOMCOL_ENDPOINT,
+         RESERVE_ENDPOINT } from '../constants/endpoints';
 import { browserHistory } from 'react-router';
 import {
   LOAD_ROOMSCOL_REQUEST,LOAD_ROOMSCOL_SUCCESS,LOAD_ROOMSCOL_FAILURE,
@@ -10,7 +11,9 @@ import {
   DELETE_ROOMS_REQUEST,DELETE_ROOMS_SUCCESS,DELETE_ROOMS_FAILURE,
   DELETE_ROOMSCOL_REQUEST,DELETE_ROOMSCOL_SUCCESS,DELETE_ROOMSCOL_FAILURE,
   LOAD_ROOMS_REQUEST,LOAD_ROOMS_SUCCESS,LOAD_ROOMS_FAILURE,
-  LOAD_ROOMCOL_REQUEST,LOAD_ROOMCOL_SUCCESS,LOAD_ROOMCOL_FAILURE
+  LOAD_ROOMCOL_REQUEST,LOAD_ROOMCOL_SUCCESS,LOAD_ROOMCOL_FAILURE,
+  CREATE_RESERVE_REQUEST,CREATE_RESERVE_SUCCESS,CREATE_RESERVE_FAILURE,
+  LOAD_RESERVE_REQUEST,LOAD_RESERVE_SUCCESS,LOAD_RESERVE_FAILURE
 
 } from '../constants/actionTypes';
 
@@ -240,7 +243,41 @@ function pad(str, max) {
 return str.length < max ? pad("0" + str, max) : str;
 }
  
+//  /////////////////////////  Reserve ////////////////////////////
 
-export const addReserve = (values)=>(
-    console.log('values...............',values)
+export const addReserve = (values) =>(
+  (dispatch) =>
+    dispatch({
+      [CALL_API]: {
+        endpoint: RESERVE_ENDPOINT,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(values),
+        types: [
+          CREATE_RESERVE_REQUEST,
+          {
+            type: CREATE_RESERVE_SUCCESS,
+            payload: (_action, _state, res) => {
+
+            }
+          },
+          CREATE_RESERVE_FAILURE
+        ]
+      }
+    }
   )
+
+)
+
+export const loadReserve = () => ({
+  [CALL_API]: {
+    endpoint: RESERVE_ENDPOINT,
+    method: 'GET',
+    types: [LOAD_RESERVE_REQUEST,          
+            LOAD_RESERVE_SUCCESS,
+            LOAD_RESERVE_FAILURE]
+  }
+})

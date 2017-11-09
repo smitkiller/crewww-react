@@ -6,6 +6,7 @@ import datas from './datas';
 import login from './login';
 import rooms from './rooms';
 import roomscol from './roomscol';
+import reserves from './reserves';
 
 export default combineReducers({
   form: formReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   datas,
   login,
   rooms,
-  roomscol
+  roomscol,
+  reserves
 })

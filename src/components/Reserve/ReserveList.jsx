@@ -10,6 +10,12 @@ import logo from '../../img/logoCrewww.png';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import DialogReserve from '../Dialog/DialogReserve';
+import _ from 'lodash';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
+
+ 
+const moment = extendMoment(Moment);
 
 const styles = {
   headline: {
@@ -43,6 +49,7 @@ class ReserveList extends Component{
   };
 
   render() {
+    const {reserves} = this.props;
     return (
     	<div style={{marginTop:20}}>
       <Tabs 
@@ -73,14 +80,17 @@ class ReserveList extends Component{
             <TableBody
                 displayRowCheckbox={state.showCheckboxes}
             >
-                  <TableRow >
-                    <TableRowColumn></TableRowColumn>
-                    <TableRowColumn></TableRowColumn>
+             {   _.map(reserves,(data,key)=>(
+                  <TableRow key={key}>
+                    <TableRowColumn>{moment(data.dateCheckIn).format('DD-MM-YYYY')}</TableRowColumn>
+                    <TableRowColumn>{moment(data.dateCheckOut).format('DD-MM-YYYY')}</TableRowColumn>
                     <TableRowColumn></TableRowColumn>
                     <TableRowColumn>
                       <FlatButton title="ยกเลิก" icon={<DeleteIcon/>} />
                     </TableRowColumn>
                   </TableRow>
+                  ))
+           }
             </TableBody>
           </Table>
         </div>

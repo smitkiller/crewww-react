@@ -1,3 +1,5 @@
+/* Test */
+/*
 import React,{Component,Proptypes} from 'react';
 import { FlatButton, TextField } from 'material-ui';
 import { Field } from 'redux-form';
@@ -87,3 +89,4 @@ ReserveForm = reduxForm(
 })(ReserveForm)
 
 export default ReserveForm;
+*/

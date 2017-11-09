@@ -1,0 +1,24 @@
+{
+  "rules": {
+        "rooms":
+  				{
+            ".read": "auth != null",
+    				".write": "auth != null"
+          },
+       "roomscol":{
+          ".read": "auth != null",
+    				".write": "auth != null"
+       		},   
+      "reserve":
+           { 
+             ".read":"true",
+            ".write": "true"
+           },
+      "datas":
+           { 
+             ".read":"true",
+            ".write": "true"
+           }
+          
+    }
+}

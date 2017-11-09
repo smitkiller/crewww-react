@@ -35,13 +35,6 @@ class Routes extends Component {
           
         <Route>
               <Route path="app" component={CheckAuthed(App)} />
-
-              <Route path="reserve" >
-                  <IndexRoute component={CheckAuthed(Reserve)} />
-                  <Route path="list" >
-                     <Route path=':id' component={CheckAuthed(ReserveList)} />
-                  </Route>
-              </Route>
               
               <Route path="users" component={CheckAuthed(Users)}/>
 
@@ -62,7 +55,12 @@ class Routes extends Component {
                 </Route>
              </Route> 
           </Route>
-          
+           <Route path="reserve" >
+              <IndexRoute component={Reserve} />
+              <Route path="list" >
+                <Route path=':id' component={ReserveList} />
+              </Route>
+           </Route>
           <Route path="login" component={Login} />
           <Route path='*' component={NotFound} />     
           </Router>

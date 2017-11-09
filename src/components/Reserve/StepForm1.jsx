@@ -1,3 +1,5 @@
+/* Test */
+/*
 import React,{Component,PropTypes} from 'react';
 import {
   Step,
@@ -155,4 +157,4 @@ StepForm = reduxForm(
 StepForm.propsTypes={
   handleSubmit:PropTypes.func
 }
-export default StepForm;
+export default StepForm;*/

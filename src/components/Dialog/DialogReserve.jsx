@@ -1,9 +1,7 @@
-/* File TEST */
 import React,{ Component,PropTypes} from 'react';
 import {Dialog,FlatButton} from 'material-ui';
 import ActionTouch from 'material-ui/svg-icons/action/touch-app'
-import ReserveForm from '../Reserve/Form';
-import StepForm from '../Reserve/StepForm';
+import {StepForm} from '../../components';
 import Clear from 'material-ui/svg-icons/content/clear'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
@@ -23,7 +21,6 @@ class DialogReserve extends Component{
   }
 
   render(){
-    const { handleSubmit} = this.props
     const actions= [
       <FlatButton
       icon={<Clear/>}

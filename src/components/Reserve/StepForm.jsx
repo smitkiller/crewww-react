@@ -21,6 +21,8 @@ import {
   TextField,
   Toggle,
 } from 'redux-form-material-ui';
+import {addReserve} from '../../actions';
+
 
 
 // validation functions
@@ -117,7 +119,7 @@ class StepForm extends React.Component {
 
     return (
       <div style={{maxWidth: 380, maxHeight: 400, margin: 'auto'}}>
-      <form onSubmit={handleSubmit((values,dispatch)=>console.log('valuessssssssss',values))} >
+      <form onSubmit={handleSubmit} >
         <Stepper
           activeStep={stepIndex}
           orientation="vertical"
@@ -154,6 +156,7 @@ class StepForm extends React.Component {
                         minDate={this.state.minDate}
                         maxDate={this.state.maxStart}
                         onChange={this.handleDayStart}
+                        mode="landscape"
                       />
                 </div>
                   <div>
@@ -167,6 +170,7 @@ class StepForm extends React.Component {
                         minDate={this.state.minEnd}
                         maxDate={this.state.maxDate}
                         onChange={this.handleDayEnd}
+                        mode="landscape"
                       />
                 </div>
               </div>
@@ -236,11 +240,9 @@ StepForm = reduxForm(
     initialValues: {
       typeReserve: '0',
       sex:'male',
-    }
+    },
+    onSubmit:(values,dispatch)=> dispatch(addReserve(values))
 })(StepForm)
 
-StepForm.propsTypes={
-  handleSubmit:PropTypes.func
-}
 
 export default StepForm;
